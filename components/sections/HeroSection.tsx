@@ -52,7 +52,7 @@ export function HeroSection() {
           className="w-36 h-48 lg:w-52 lg:h-72 rounded-3xl overflow-hidden shadow-warm"
         >
           <Image
-            src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&q=80"
+            src="/images/profile1.png"
             alt="Aisha portrait"
             fill
             className="object-cover"
@@ -72,8 +72,8 @@ export function HeroSection() {
           className="w-28 h-36 lg:w-40 lg:h-52 rounded-2xl overflow-hidden shadow-medium"
         >
           <Image
-            src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=300&q=80"
-            alt="Morning coffee"
+            src="/images/profile2.png"
+            alt="Aisha lifestyle"
             fill
             className="object-cover"
             sizes="160px"

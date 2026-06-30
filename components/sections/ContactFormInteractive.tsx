@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { CheckCircle } from "lucide-react";
 
 export function ContactFormInteractive() {
   const [name, setName] = useState("");
@@ -48,8 +49,8 @@ export function ContactFormInteractive() {
             exit={{ opacity: 0, y: -20, scale: 0.95 }}
             className="fixed top-24 right-5 sm:right-8 z-50 glass bg-cream/95 text-charcoal border border-accent-rose/30 px-6 py-4 rounded-2xl shadow-large max-w-sm flex items-start gap-3"
           >
-            <div className="w-5 h-5 rounded-full bg-accent-rose/10 text-accent-rose flex items-center justify-center flex-shrink-0 mt-0.5 font-bold text-xs">
-              ✓
+            <div className="w-5 h-5 rounded-full bg-accent-rose/10 text-accent-rose flex items-center justify-center flex-shrink-0 mt-0.5">
+              <CheckCircle size={14} className="text-accent-rose" />
             </div>
             <div>
               <p className="text-xs font-semibold text-charcoal">Message Sent!</p>
