@@ -3,13 +3,13 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { Instagram, Youtube, TrendingUp, Users, Eye, Heart } from "lucide-react";
+import { TrendingUp, Users, Eye, Heart } from "lucide-react";
 
 const metrics = [
-  { icon: Users, value: "248K", label: "Instagram followers" },
-  { icon: Youtube, value: "91K", label: "YouTube subscribers" },
-  { icon: Eye, value: "2.3M", label: "Avg. monthly reach" },
-  { icon: Heart, value: "5.8%", label: "Avg. engagement rate" },
+  { icon: Users, value: "456", label: "Instagram followers" },
+  { icon: TrendingUp, value: "585K", label: "Accounts reached" },
+  { icon: Eye, value: "964K", label: "Reel views" },
+  { icon: Heart, value: "19", label: "Reels & posts" },
 ];
 
 const demographics = [

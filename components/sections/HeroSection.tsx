@@ -7,9 +7,9 @@ import { ArrowDown, MapPin } from "lucide-react";
 import Image from "next/image";
 
 const stats = [
-  { value: "248K", label: "Instagram" },
-  { value: "91K", label: "YouTube" },
-  { value: "2.3M", label: "Monthly reach" },
+  { value: "456", label: "Instagram" },
+  { value: "585K", label: "Accounts reached" },
+  { value: "964K", label: "Reel views" },
 ];
 
 export function HeroSection() {
