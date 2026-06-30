@@ -110,10 +110,8 @@ export function DayInTheLife() {
           <p className="text-[11px] tracking-[0.18em] uppercase text-muted-gray font-medium mb-3">
             A day in my life
           </p>
-          <h2 className="font-display text-display-md text-charcoal leading-tight">
-            How I spend my{" "}
-            <br />
-            <em className="text-accent-rose font-light">ordinary hours</em>
+          <h2 className="font-condensed text-poster-md text-charcoal leading-[0.95]">
+            How I spend my ordinary hours
           </h2>
           <p className="text-warm-gray text-sm leading-relaxed mt-4 max-w-md">
             I work a full-time 9-to-6 job. But outside those hours, I build a life 
