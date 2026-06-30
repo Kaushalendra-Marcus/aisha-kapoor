@@ -4,7 +4,9 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ShoppingBag } from "lucide-react";
+import { ArrowRight, ShoppingBag, Play, ExternalLink } from "lucide-react";
+
+const WEDDING_REEL_URL = "https://www.instagram.com/reel/DaD1WAcTROK/";
 
 interface OutfitItem {
   label: string;
@@ -85,10 +87,22 @@ export function OutfitOfWeek() {
               })}
             </div>
 
-            <Link href="/outfits" className="btn-text group">
-              <span>All outfits</span>
-              <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-200" />
-            </Link>
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+              <Link href="/outfits" className="btn-text group">
+                <span>All outfits</span>
+                <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-200" />
+              </Link>
+              <a
+                href={WEDDING_REEL_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-text group"
+              >
+                <Play size={11} className="text-accent-rose" fill="currentColor" />
+                <span>What I wore to a wedding</span>
+                <ExternalLink size={11} className="opacity-60 group-hover:opacity-100 transition-opacity" />
+              </a>
+            </div>
           </motion.div>
 
           {/* Image side */}

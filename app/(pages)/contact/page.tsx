@@ -39,7 +39,7 @@ export default function ContactPage() {
                 </div>
               </a>
               <a
-                href="https://instagram.com/aishakapoor"
+                href="https://www.instagram.com/aishadiaries.23/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 group"
@@ -49,7 +49,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <p className="text-sm font-medium text-charcoal">Instagram</p>
-                  <p className="text-xs text-warm-gray">@aishakapoor</p>
+                  <p className="text-xs text-warm-gray">@aishadiaries.23</p>
                 </div>
               </a>
               <a

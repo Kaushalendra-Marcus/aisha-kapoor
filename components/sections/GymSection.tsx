@@ -3,7 +3,9 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Trophy } from "lucide-react";
+import { ArrowRight, Trophy, Play, ExternalLink } from "lucide-react";
+
+const GYM_REEL_URL = "https://www.instagram.com/reel/DaLgtIHTzBD/";
 
 const stats = [
   { value: "4×", label: "Gym per week" },
@@ -14,7 +16,6 @@ const stats = [
 const gymSnaps = [
   "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=400&q=80",
   "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=400&q=80",
-  "https://images.unsplash.com/photo-1534258936925-c58bed479fcb?w=400&q=80",
 ];
 
 const favorites = [
@@ -83,10 +84,22 @@ export function GymSection() {
               </div>
             </div>
 
-            <Link href="/gym" className="inline-flex items-center gap-2 text-sm font-medium text-cream/60 hover:text-cream transition-colors group">
-              <span>See full gym page</span>
-              <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-200" />
-            </Link>
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+              <Link href="/gym" className="inline-flex items-center gap-2 text-sm font-medium text-cream/60 hover:text-cream transition-colors group">
+                <span>See full gym page</span>
+                <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-200" />
+              </Link>
+              <a
+                href={GYM_REEL_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm font-medium text-cream/60 hover:text-cream transition-colors group"
+              >
+                <Play size={11} className="text-accent-warm" fill="currentColor" />
+                <span>Watch the gym reel</span>
+                <ExternalLink size={12} className="opacity-50 group-hover:opacity-90 transition-opacity" />
+              </a>
+            </div>
           </motion.div>
 
           {/* Right - Photo grid */}
@@ -116,15 +129,21 @@ export function GymSection() {
                   sizes="(max-width: 1024px) 45vw, 25vw"
                 />
               </div>
-              <div className="img-zoom relative aspect-square rounded-2xl overflow-hidden">
-                <Image
-                  src={gymSnaps[2]}
-                  alt="Gym"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 45vw, 25vw"
-                />
-              </div>
+
+              {/* Reel CTA tile — styled card, not a fake screenshot */}
+              <a
+                href={GYM_REEL_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group/reel relative aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-accent-warm/25 via-charcoal to-charcoal border border-cream/10 flex flex-col items-center justify-center gap-2.5 transition-colors hover:border-cream/30"
+              >
+                <span className="w-10 h-10 rounded-full bg-cream/10 group-hover/reel:bg-cream/20 flex items-center justify-center transition-colors">
+                  <Play size={14} className="text-cream translate-x-0.5" fill="currentColor" />
+                </span>
+                <span className="text-[10px] tracking-[0.12em] uppercase text-cream/70 font-medium text-center px-2">
+                  Watch gym reel
+                </span>
+              </a>
             </div>
           </motion.div>
         </div>

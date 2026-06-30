@@ -1,45 +1,56 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
-import { Instagram, Heart, MessageCircle, ExternalLink } from "lucide-react";
+import { Instagram, ExternalLink, Play, Heart, MessageCircle } from "lucide-react";
 
-const posts = [
+const PROFILE_URL = "https://www.instagram.com/aishadiaries.23/";
+const HANDLE = "@aishadiaries.23";
+
+const spotlightReels = [
   {
-    image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400&q=80",
-    likes: "12.4K",
-    comments: "238",
-    caption: "Sunday reset complete",
+    url: "https://www.instagram.com/reel/DZ8gSyUzQ_5/",
+    tag: "Featured reel",
+    poster: "Watch the one\neveryone's sending",
+    caption: "Before office vs. after office — the whiplash is real.",
+    likes: "32.6K",
+    comments: "584",
+    bg: "bg-charcoal",
+    text: "text-cream",
+    sub: "text-cream/50",
+    ring: "border-cream/10",
+    chip: "bg-cream/10 text-cream/80",
+    btnBg: "bg-cream text-charcoal",
+    accent: "text-accent-warm",
   },
   {
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80",
-    likes: "9.8K",
-    comments: "185",
-    caption: "Morning oat latte ritual",
+    url: "https://www.instagram.com/reel/DaN9ZItz45P/",
+    tag: "Travel · Bike ride",
+    poster: "Open road,\nno destination",
+    caption: "Full tank, empty schedule, best kind of Sunday.",
+    likes: "18.9K",
+    comments: "351",
+    bg: "bg-block-yellow",
+    text: "text-charcoal",
+    sub: "text-charcoal/55",
+    ring: "border-charcoal/10",
+    chip: "bg-charcoal/10 text-charcoal/75",
+    btnBg: "bg-charcoal text-cream",
+    accent: "text-dark-brown",
   },
   {
-    image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=400&q=80",
-    likes: "18.2K",
-    comments: "412",
-    caption: "New PR day",
-  },
-  {
-    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&q=80",
-    likes: "7.3K",
-    comments: "156",
-    caption: "Office fit check",
-  },
-  {
-    image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=400&q=80",
-    likes: "11.1K",
-    comments: "267",
-    caption: "Made jhalmuri today",
-  },
-  {
-    image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&q=80",
-    likes: "14.6K",
-    comments: "321",
-    caption: "Meal prep Sunday",
+    url: "https://www.instagram.com/reel/DaGZFNuzHBA/",
+    tag: "Night party",
+    poster: "City lights,\ngood people",
+    caption: "Last one before the work week catches up.",
+    likes: "13.2K",
+    comments: "276",
+    bg: "bg-dark-brown",
+    text: "text-cream",
+    sub: "text-cream/50",
+    ring: "border-cream/10",
+    chip: "bg-cream/10 text-cream/80",
+    btnBg: "bg-cream text-dark-brown",
+    accent: "text-accent-rose",
   },
 ];
 
@@ -59,53 +70,69 @@ export function InstagramSection() {
               On Instagram
             </p>
             <h2 className="font-condensed text-poster-md text-charcoal leading-[0.95]">
-              Latest from the grid
+              A few reels worth a watch
             </h2>
           </div>
           <a
-            href="https://instagram.com/aishakapoor"
+            href={PROFILE_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-text group self-start sm:self-auto"
           >
             <Instagram size={13} />
-            <span>@aishakapoor</span>
+            <span>{HANDLE}</span>
             <ExternalLink size={11} />
           </a>
         </motion.div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-          {posts.map((post, i) => (
+        {/* Spotlight reel cards — poster-style, matches the site's own design language */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          {spotlightReels.map((reel, i) => (
             <motion.a
-              key={i}
-              href="https://instagram.com/aishakapoor"
+              key={reel.url}
+              href={reel.url}
               target="_blank"
               rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.5, delay: i * 0.07, ease: [0.16, 1, 0.3, 1] }}
-              className="group relative aspect-square rounded-2xl overflow-hidden block"
+              transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className={`group relative flex flex-col justify-between rounded-3xl p-7 sm:p-8 aspect-[3/4] overflow-hidden border ${reel.bg} ${reel.text} ${reel.ring} transition-transform duration-300 hover:-translate-y-1 shadow-soft`}
             >
-              <Image
-                src={post.image}
-                alt={post.caption}
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-                sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 16vw"
-              />
-              <div className="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/50 transition-all duration-300 flex items-center justify-center">
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-cream text-center">
-                  <div className="flex items-center justify-center gap-4 mb-2">
-                    <span className="flex items-center gap-1 text-xs font-medium">
-                      <Heart size={12} fill="white" /> {post.likes}
-                    </span>
-                    <span className="flex items-center gap-1 text-xs font-medium">
-                      <MessageCircle size={12} fill="white" /> {post.comments}
-                    </span>
-                  </div>
-                  <p className="text-[10px] opacity-80 px-2 leading-tight">{post.caption}</p>
+              {/* Top: tag + play */}
+              <div className="flex items-start justify-between">
+                <span className={`text-[10px] tracking-[0.14em] uppercase font-semibold px-3 py-1.5 rounded-full ${reel.chip}`}>
+                  {reel.tag}
+                </span>
+                <span className={`w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110 ${reel.chip}`}>
+                  <Play size={12} fill="currentColor" className="translate-x-0.5" />
+                </span>
+              </div>
+
+              {/* Middle: poster headline */}
+              <div className="my-6">
+                <h3 className="font-condensed text-2xl sm:text-[1.7rem] leading-[1.02] whitespace-pre-line">
+                  {reel.poster}
+                </h3>
+                <p className={`text-[13px] leading-relaxed mt-3 max-w-[22ch] ${reel.sub}`}>
+                  {reel.caption}
+                </p>
+              </div>
+
+              {/* Bottom: stats + CTA */}
+              <div>
+                <div className={`flex items-center gap-4 mb-4 text-[11px] font-medium ${reel.sub}`}>
+                  <span className="flex items-center gap-1.5">
+                    <Heart size={11} className={reel.accent} fill="currentColor" /> {reel.likes}
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <MessageCircle size={11} className={reel.accent} fill="currentColor" /> {reel.comments}
+                  </span>
                 </div>
+                <span className={`inline-flex items-center gap-1.5 text-xs font-semibold px-4 py-2.5 rounded-full transition-opacity group-hover:opacity-90 ${reel.btnBg}`}>
+                  Watch on Instagram
+                  <ExternalLink size={11} />
+                </span>
               </div>
             </motion.a>
           ))}
@@ -117,7 +144,7 @@ export function InstagramSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex flex-wrap items-center justify-center gap-8 mt-10 pt-8 border-t border-light-gray"
+          className="flex flex-wrap items-center justify-center gap-8 mt-14 pt-8 border-t border-light-gray"
         >
           {[
             { value: "248K", label: "Followers" },
