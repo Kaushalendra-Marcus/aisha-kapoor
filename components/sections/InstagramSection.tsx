@@ -6,7 +6,7 @@ import { Instagram, Heart, MessageCircle, ExternalLink } from "lucide-react";
 
 const posts = [
   {
-    image: "https://images.unsplash.com/photo-1483181994823-3f5195e61571?w=400&q=80",
+    image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400&q=80",
     likes: "12.4K",
     comments: "238",
     caption: "Sunday reset complete ✨",

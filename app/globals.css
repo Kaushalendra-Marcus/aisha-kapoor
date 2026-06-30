@@ -255,3 +255,41 @@ html.lenis {
     @apply py-20 md:py-28 lg:py-36;
   }
 }
+
+/* ===== COZY MODE ===== */
+[data-cozy='true'] {
+  --cream: #1A1715;
+  --off-white: #201D1A;
+  --warm-beige: #2A2520;
+  --light-gray: #332E28;
+  --soft-pink: #2D2420;
+  --blush: #4A3830;
+  --charcoal: #F0EAE2;
+  --dark-brown: #FAF8F5;
+  --warm-gray: #C4B8A8;
+  --muted-gray: #8A7D6E;
+  --accent-rose: #D4958A;
+  --accent-warm: #C8A57A;
+}
+
+[data-cozy='true'] body {
+  background-color: var(--cream);
+  color: var(--charcoal);
+}
+
+[data-cozy='true'] .grain-overlay {
+  opacity: 0.04;
+}
+
+/* Smooth transition for cozy mode switching */
+body,
+body * {
+  transition: background-color 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Prevent ugly flash on images during mode transitions */
+img, svg, [data-parallax] {
+  transition: transform 0.3s ease-out !important;
+}

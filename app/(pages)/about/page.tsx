@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { AboutTimeline } from "@/components/sections/AboutTimeline";
 
 export const metadata: Metadata = {
   title: "About",
@@ -7,14 +8,7 @@ export const metadata: Metadata = {
     "Hi, I'm Aisha Kapoor — 23, Bangalore, software engineer by day and lifestyle creator by passion. This is the full story.",
 };
 
-const timeline = [
-  { year: "2003", text: "Born and raised in Kolkata." },
-  { year: "2021", text: "Moved to Bangalore for college placement." },
-  { year: "2022", text: "Started my first corporate job in software." },
-  { year: "2023", text: "Started the gym. Posted my first reel." },
-  { year: "2024", text: "Hit 100K followers. Quit trying to be perfect online." },
-  { year: "2025", text: "Built this website — my actual home on the internet." },
-];
+
 
 const facts = [
   { label: "Age", value: "23" },
@@ -98,23 +92,11 @@ export default function AboutPage() {
         </div>
 
         {/* Timeline */}
-        <div className="max-w-2xl">
-          <h2 className="font-display text-display-sm text-charcoal mb-8 font-medium">
+        <div className="mb-24">
+          <h2 className="font-display text-display-sm text-charcoal mb-12 font-medium text-center">
             A quick timeline
           </h2>
-          <div className="space-y-0">
-            {timeline.map((item, i) => (
-              <div
-                key={item.year}
-                className="flex gap-6 py-5 border-b border-light-gray last:border-b-0"
-              >
-                <span className="font-display text-lg text-muted-gray w-16 flex-shrink-0">
-                  {item.year}
-                </span>
-                <p className="text-sm text-charcoal">{item.text}</p>
-              </div>
-            ))}
-          </div>
+          <AboutTimeline />
         </div>
       </div>
     </div>

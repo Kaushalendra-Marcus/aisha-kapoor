@@ -60,7 +60,7 @@ const products = [
     desc: "Microwave safe, doesn't stain, makes meal prep so much easier.",
     price: "₹1,199",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1584346133934-a3afd2a33c4e?w=300&q=80",
+    image: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=300&q=80",
     tag: "Kitchen",
   },
 ];

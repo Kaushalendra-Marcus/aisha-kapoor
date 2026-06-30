@@ -41,44 +41,65 @@ export function HeroSection() {
       className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-cream pt-20"
     >
       {/* Background floating images */}
-      <div
-        data-parallax="0.3"
-        className="absolute top-[12%] right-[8%] w-36 h-48 lg:w-52 lg:h-72 rounded-3xl overflow-hidden shadow-warm opacity-80 hidden md:block transition-transform duration-300 ease-out"
+      <motion.div
+        initial={{ opacity: 0, y: 20, rotate: 3 }}
+        animate={{ opacity: 0.8, y: 0, rotate: 3 }}
+        transition={{ delay: 0.8, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+        className="absolute top-[12%] right-[8%] hidden md:block"
       >
-        <Image
-          src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&q=80"
-          alt="Aisha portrait"
-          fill
-          className="object-cover"
-          sizes="200px"
-        />
-      </div>
+        <div
+          data-parallax="0.3"
+          className="w-36 h-48 lg:w-52 lg:h-72 rounded-3xl overflow-hidden shadow-warm"
+        >
+          <Image
+            src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&q=80"
+            alt="Aisha portrait"
+            fill
+            className="object-cover"
+            sizes="200px"
+          />
+        </div>
+      </motion.div>
 
-      <div
-        data-parallax="0.6"
-        className="absolute bottom-[20%] right-[18%] w-28 h-36 lg:w-40 lg:h-52 rounded-2xl overflow-hidden shadow-medium opacity-60 hidden lg:block transition-transform duration-300 ease-out"
+      <motion.div
+        initial={{ opacity: 0, y: 20, rotate: -2 }}
+        animate={{ opacity: 0.6, y: 0, rotate: -2 }}
+        transition={{ delay: 1.0, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+        className="absolute bottom-[20%] right-[18%] hidden lg:block"
       >
-        <Image
-          src="https://images.unsplash.com/photo-1559056961-1f4bff8d5590?w=300&q=80"
-          alt="Morning coffee"
-          fill
-          className="object-cover"
-          sizes="160px"
-        />
-      </div>
+        <div
+          data-parallax="0.6"
+          className="w-28 h-36 lg:w-40 lg:h-52 rounded-2xl overflow-hidden shadow-medium"
+        >
+          <Image
+            src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=300&q=80"
+            alt="Morning coffee"
+            fill
+            className="object-cover"
+            sizes="160px"
+          />
+        </div>
+      </motion.div>
 
-      <div
-        data-parallax="0.4"
-        className="absolute top-[30%] left-[5%] w-24 h-32 lg:w-36 lg:h-48 rounded-2xl overflow-hidden shadow-soft opacity-50 hidden lg:block transition-transform duration-300 ease-out"
+      <motion.div
+        initial={{ opacity: 0, y: 20, rotate: 2 }}
+        animate={{ opacity: 0.5, y: 0, rotate: 2 }}
+        transition={{ delay: 1.2, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+        className="absolute top-[30%] left-[5%] hidden lg:block"
       >
-        <Image
-          src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=300&q=80"
-          alt="Gym"
-          fill
-          className="object-cover"
-          sizes="140px"
-        />
-      </div>
+        <div
+          data-parallax="0.4"
+          className="w-24 h-32 lg:w-36 lg:h-48 rounded-2xl overflow-hidden shadow-soft"
+        >
+          <Image
+            src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=300&q=80"
+            alt="Gym"
+            fill
+            className="object-cover"
+            sizes="140px"
+          />
+        </div>
+      </motion.div>
 
       {/* Main content */}
       <div className="container-site relative z-10">
@@ -114,12 +135,15 @@ export function HeroSection() {
                 viewBox="0 0 100 8"
                 preserveAspectRatio="none"
               >
-                <path
+                <motion.path
                   d="M0,6 C20,2 40,8 60,4 C80,0 90,6 100,4"
                   stroke="#E8D5CF"
                   strokeWidth="3"
                   fill="none"
                   strokeLinecap="round"
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  animate={{ pathLength: 1, opacity: 1 }}
+                  transition={{ delay: 1.0, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                 />
               </svg>
             </span>
