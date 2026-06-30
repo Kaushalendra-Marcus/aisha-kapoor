@@ -1,62 +1,103 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Instagram, ExternalLink, Play, Heart, MessageCircle } from "lucide-react";
+import Script from "next/script";
+import { Instagram, ExternalLink, Loader2 } from "lucide-react";
 
 const PROFILE_URL = "https://www.instagram.com/aishadiaries.23/";
 const HANDLE = "@aishadiaries.23";
 
-const spotlightReels = [
-  {
-    url: "https://www.instagram.com/reel/DZ8gSyUzQ_5/",
-    tag: "Featured reel",
-    poster: "Watch the one\neveryone's sending",
-    caption: "Before office vs. after office — the whiplash is real.",
-    likes: "32.6K",
-    comments: "584",
-    bg: "bg-charcoal",
-    text: "text-cream",
-    sub: "text-cream/50",
-    ring: "border-cream/10",
-    chip: "bg-cream/10 text-cream/80",
-    btnBg: "bg-cream text-charcoal",
-    accent: "text-accent-warm",
-  },
-  {
-    url: "https://www.instagram.com/reel/DaN9ZItz45P/",
-    tag: "Travel · Bike ride",
-    poster: "Open road,\nno destination",
-    caption: "Full tank, empty schedule, best kind of Sunday.",
-    likes: "18.9K",
-    comments: "351",
-    bg: "bg-block-yellow",
-    text: "text-charcoal",
-    sub: "text-charcoal/55",
-    ring: "border-charcoal/10",
-    chip: "bg-charcoal/10 text-charcoal/75",
-    btnBg: "bg-charcoal text-cream",
-    accent: "text-dark-brown",
-  },
-  {
-    url: "https://www.instagram.com/reel/DaGZFNuzHBA/",
-    tag: "Night party",
-    poster: "City lights,\ngood people",
-    caption: "Last one before the work week catches up.",
-    likes: "13.2K",
-    comments: "276",
-    bg: "bg-dark-brown",
-    text: "text-cream",
-    sub: "text-cream/50",
-    ring: "border-cream/10",
-    chip: "bg-cream/10 text-cream/80",
-    btnBg: "bg-cream text-dark-brown",
-    accent: "text-accent-rose",
-  },
+const reels = [
+  { url: "https://www.instagram.com/reel/DZ8gSyUzQ_5/", tag: "Featured reel" },
+  { url: "https://www.instagram.com/reel/DaN9ZItz45P/", tag: "Travel · Bike ride" },
+  { url: "https://www.instagram.com/reel/DaGZFNuzHBA/", tag: "Night party" },
 ];
+
+declare global {
+  interface Window {
+    instgrm?: {
+      Embeds: { process: () => void };
+    };
+  }
+}
+
+/**
+ * Instagram's own official embed. Once embed.js runs, Instagram fetches the
+ * actual post and replaces this block with a real iframe containing the
+ * genuine thumbnail/video, caption, and like count — pulled live from
+ * Instagram, not anything written by hand.
+ */
+function InstagramReelEmbed({ url }: { url: string }) {
+  const [loaded, setLoaded] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    if (window.instgrm) {
+      window.instgrm.Embeds.process();
+    }
+
+    const observer = new MutationObserver(() => {
+      if (cancelled) return;
+      if (containerRef.current?.querySelector("iframe")) {
+        setLoaded(true);
+        observer.disconnect();
+      }
+    });
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current, { childList: true, subtree: true });
+    }
+
+    return () => {
+      cancelled = true;
+      observer.disconnect();
+    };
+  }, [url]);
+
+  return (
+    <div ref={containerRef} className="relative min-h-[420px] flex items-center justify-center">
+      {!loaded && (
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-off-white text-muted-gray rounded-2xl">
+          <Loader2 size={18} className="animate-spin" />
+          <span className="text-[11px]">Loading reel…</span>
+        </div>
+      )}
+      <blockquote
+        className="instagram-media"
+        data-instgrm-permalink={url}
+        data-instgrm-version="14"
+        style={{
+          background: "#FFF",
+          border: 0,
+          margin: "0 auto",
+          width: "100%",
+          minWidth: "270px",
+          maxWidth: "100%",
+        }}
+      >
+        <a href={url} target="_blank" rel="noopener noreferrer">
+          View this reel on Instagram
+        </a>
+      </blockquote>
+    </div>
+  );
+}
 
 export function InstagramSection() {
   return (
     <section className="section-padding bg-off-white">
+      {/* Loads Instagram's official embed script once; it scans the page
+          for .instagram-media blockquotes and renders the real previews. */}
+      <Script
+        src="https://www.instagram.com/embed.js"
+        strategy="lazyOnload"
+        onLoad={() => window.instgrm?.Embeds.process()}
+        onReady={() => window.instgrm?.Embeds.process()}
+      />
+
       <div className="container-site">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -85,56 +126,34 @@ export function InstagramSection() {
           </a>
         </motion.div>
 
-        {/* Spotlight reel cards — poster-style, matches the site's own design language */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {spotlightReels.map((reel, i) => (
-            <motion.a
+        {/* Real Instagram embeds, evenly laid out, equal-width columns */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+          {reels.map((reel, i) => (
+            <motion.div
               key={reel.url}
-              href={reel.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className={`group relative flex flex-col justify-between rounded-3xl p-7 sm:p-8 aspect-[3/4] overflow-hidden border ${reel.bg} ${reel.text} ${reel.ring} transition-transform duration-300 hover:-translate-y-1 shadow-soft`}
+              transition={{ duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
             >
-              {/* Top: tag + play */}
-              <div className="flex items-start justify-between">
-                <span className={`text-[10px] tracking-[0.14em] uppercase font-semibold px-3 py-1.5 rounded-full ${reel.chip}`}>
+              <div className="mb-3 flex items-center justify-between">
+                <span className="text-[10px] tracking-[0.12em] uppercase text-warm-gray font-semibold bg-warm-beige px-2.5 py-1 rounded-full">
                   {reel.tag}
                 </span>
-                <span className={`w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110 ${reel.chip}`}>
-                  <Play size={12} fill="currentColor" className="translate-x-0.5" />
-                </span>
+                <a
+                  href={reel.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-gray hover:text-charcoal transition-colors"
+                  aria-label={`Open ${reel.tag} reel on Instagram`}
+                >
+                  <ExternalLink size={13} />
+                </a>
               </div>
-
-              {/* Middle: poster headline */}
-              <div className="my-6">
-                <h3 className="font-condensed text-2xl sm:text-[1.7rem] leading-[1.02] whitespace-pre-line">
-                  {reel.poster}
-                </h3>
-                <p className={`text-[13px] leading-relaxed mt-3 max-w-[22ch] ${reel.sub}`}>
-                  {reel.caption}
-                </p>
+              <div className="rounded-2xl overflow-hidden border border-light-gray shadow-soft bg-white">
+                <InstagramReelEmbed url={reel.url} />
               </div>
-
-              {/* Bottom: stats + CTA */}
-              <div>
-                <div className={`flex items-center gap-4 mb-4 text-[11px] font-medium ${reel.sub}`}>
-                  <span className="flex items-center gap-1.5">
-                    <Heart size={11} className={reel.accent} fill="currentColor" /> {reel.likes}
-                  </span>
-                  <span className="flex items-center gap-1.5">
-                    <MessageCircle size={11} className={reel.accent} fill="currentColor" /> {reel.comments}
-                  </span>
-                </div>
-                <span className={`inline-flex items-center gap-1.5 text-xs font-semibold px-4 py-2.5 rounded-full transition-opacity group-hover:opacity-90 ${reel.btnBg}`}>
-                  Watch on Instagram
-                  <ExternalLink size={11} />
-                </span>
-              </div>
-            </motion.a>
+            </motion.div>
           ))}
         </div>
 
