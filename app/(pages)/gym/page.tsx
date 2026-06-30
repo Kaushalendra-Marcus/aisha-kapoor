@@ -52,8 +52,8 @@ export default function GymPage() {
         {/* Stats */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-20">
           {stats.map((stat) => (
-            <div key={stat.label} className="bg-off-white rounded-2xl p-6 text-center">
-              <p className="font-display text-3xl font-medium text-charcoal mb-1">{stat.value}</p>
+            <div key={stat.label} className="stat-card text-center">
+              <p className="font-condensed text-3xl text-charcoal mb-1">{stat.value}</p>
               <p className="text-[11px] tracking-[0.1em] uppercase text-muted-gray">{stat.label}</p>
             </div>
           ))}
@@ -73,7 +73,7 @@ export default function GymPage() {
 
           {/* Split */}
           <div className="order-1 lg:order-2">
-            <h2 className="font-display text-display-sm text-charcoal mb-6 font-medium">
+            <h2 className="font-condensed text-poster-md text-charcoal mb-6 leading-[0.95]">
               My weekly split
             </h2>
             <div className="space-y-0 mb-10">
@@ -101,7 +101,7 @@ export default function GymPage() {
         <div>
           <div className="flex items-center gap-2 mb-8">
             <Trophy size={14} className="text-accent-warm" />
-            <h2 className="font-display text-display-sm text-charcoal font-medium">
+            <h2 className="font-condensed text-poster-md text-charcoal leading-[0.95]">
               Gym essentials I actually use
             </h2>
           </div>

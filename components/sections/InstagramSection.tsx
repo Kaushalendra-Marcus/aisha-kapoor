@@ -9,37 +9,37 @@ const posts = [
     image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400&q=80",
     likes: "12.4K",
     comments: "238",
-    caption: "Sunday reset complete ✨",
+    caption: "Sunday reset complete",
   },
   {
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80",
     likes: "9.8K",
     comments: "185",
-    caption: "Morning oat latte ritual ☕",
+    caption: "Morning oat latte ritual",
   },
   {
     image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=400&q=80",
     likes: "18.2K",
     comments: "412",
-    caption: "New PR day 🎉",
+    caption: "New PR day",
   },
   {
     image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&q=80",
     likes: "7.3K",
     comments: "156",
-    caption: "Office fit check 💼",
+    caption: "Office fit check",
   },
   {
     image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=400&q=80",
     likes: "11.1K",
     comments: "267",
-    caption: "Made jhalmuri today 🌶️",
+    caption: "Made jhalmuri today",
   },
   {
     image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&q=80",
     likes: "14.6K",
     comments: "321",
-    caption: "Meal prep Sunday 🥗",
+    caption: "Meal prep Sunday",
   },
 ];
 
@@ -58,7 +58,7 @@ export function InstagramSection() {
             <p className="text-[11px] tracking-[0.18em] uppercase text-muted-gray font-medium mb-2">
               On Instagram
             </p>
-            <h2 className="font-display text-display-md text-charcoal">
+            <h2 className="font-condensed text-poster-md text-charcoal leading-[0.95]">
               Latest from the grid
             </h2>
           </div>
@@ -125,7 +125,7 @@ export function InstagramSection() {
             { value: "2.3M", label: "Monthly reach" },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
-              <p className="font-display text-2xl font-medium text-charcoal">{stat.value}</p>
+              <p className="font-condensed text-2xl text-charcoal">{stat.value}</p>
               <p className="text-[11px] tracking-[0.1em] uppercase text-muted-gray mt-0.5">{stat.label}</p>
             </div>
           ))}

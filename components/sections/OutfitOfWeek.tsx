@@ -26,7 +26,7 @@ export function OutfitOfWeek() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section className="section-padding bg-soft-pink overflow-hidden">
+    <section className="section-padding bg-block-blue overflow-hidden">
       <div className="container-site">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Text side */}
@@ -36,13 +36,11 @@ export function OutfitOfWeek() {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <p className="text-[11px] tracking-[0.18em] uppercase text-muted-gray font-medium mb-3">
+            <p className="text-[11px] tracking-[0.18em] uppercase text-warm-gray font-medium mb-3">
               OOTD
             </p>
-            <h2 className="font-display text-display-md text-charcoal mb-6 leading-tight">
-              Outfit of{" "}
-              <br />
-              <em className="text-accent-rose font-light">the week</em>
+            <h2 className="font-condensed text-poster-md text-charcoal mb-6 leading-[0.95]">
+              Outfit of the week
             </h2>
             <p className="text-warm-gray text-sm leading-relaxed max-w-xs mb-8">
               Office casual on a Tuesday. Linen shirt, comfy trousers, and my 
@@ -63,8 +61,8 @@ export function OutfitOfWeek() {
                     transition={{ delay: 0.2 + i * 0.08, duration: 0.5 }}
                     onMouseEnter={() => setHoveredIndex(i)}
                     onMouseLeave={() => setHoveredIndex(null)}
-                    className={`flex items-center justify-between py-3 px-4 border-b border-blush rounded-xl transition-all duration-300 ${
-                      isHovered ? "bg-cream/40 pl-6 shadow-sm border-transparent" : "border-blush"
+                    className={`flex items-center justify-between py-3 px-4 border-b rounded-xl transition-all duration-300 ${
+                      isHovered ? "bg-off-white pl-6 shadow-sm border-transparent" : "border-cream/60"
                     }`}
                   >
                     <div className="flex items-center gap-3">

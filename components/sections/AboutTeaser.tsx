@@ -3,7 +3,15 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, MapPin, Coffee, Dumbbell, Moon, Sparkles, Leaf } from "lucide-react";
+
+const tags = [
+  { icon: Coffee, label: "Coffee addict" },
+  { icon: Dumbbell, label: "Gym rat" },
+  { icon: Moon, label: "Night owl" },
+  { icon: Sparkles, label: "Minimalist" },
+  { icon: Leaf, label: "Bangalore girl" },
+];
 
 export function AboutTeaser() {
   return (
@@ -37,8 +45,10 @@ export function AboutTeaser() {
                 transition={{ delay: 0.4, duration: 0.6 }}
                 className="absolute -bottom-6 -right-6 glass rounded-2xl px-5 py-4 shadow-medium"
               >
-                <p className="text-[10px] tracking-[0.14em] uppercase text-muted-gray mb-1">Based in</p>
-                <p className="font-display text-xl font-medium text-charcoal">Bangalore 🌿</p>
+                <p className="text-[10px] tracking-[0.14em] uppercase text-muted-gray mb-1 flex items-center gap-1.5">
+                  <MapPin size={10} /> Based in
+                </p>
+                <p className="font-display text-xl font-medium text-charcoal">Bangalore</p>
                 <p className="text-xs text-warm-gray mt-0.5">Software eng × Creator</p>
               </motion.div>
               {/* Decorative dot grid */}
@@ -83,9 +93,15 @@ export function AboutTeaser() {
             </div>
 
             <div className="flex flex-wrap gap-2 mt-8 mb-10">
-              {["Coffee addict ☕", "Gym rat 💪", "Night owl 🌙", "Minimalist ✦", "Bangalore girl 🌿"].map((tag) => (
-                <span key={tag} className="tag-pill">{tag}</span>
-              ))}
+              {tags.map((tag) => {
+                const Icon = tag.icon;
+                return (
+                  <span key={tag.label} className="tag-pill">
+                    <Icon size={11} className="mr-1" />
+                    {tag.label}
+                  </span>
+                );
+              })}
             </div>
 
             <Link href="/about" className="btn-text group">

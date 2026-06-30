@@ -127,10 +127,10 @@ export default function CollabsPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="bg-off-white rounded-2xl p-6"
+                className="stat-card"
               >
                 <Icon size={16} className="text-muted-gray mb-4" />
-                <p className="font-display text-3xl font-medium text-charcoal mb-1">
+                <p className="font-condensed text-3xl text-charcoal mb-1">
                   {metric.value}
                 </p>
                 <p className="text-xs text-warm-gray">{metric.label}</p>
@@ -142,7 +142,7 @@ export default function CollabsPage() {
         {/* Audience demographics */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
           <div>
-            <h2 className="font-display text-display-sm text-charcoal mb-6 font-medium">
+            <h2 className="font-condensed text-poster-md text-charcoal mb-6 leading-[0.95]">
               Audience by gender
             </h2>
             <div className="space-y-4">
@@ -166,7 +166,7 @@ export default function CollabsPage() {
             </div>
           </div>
           <div>
-            <h2 className="font-display text-display-sm text-charcoal mb-6 font-medium">
+            <h2 className="font-condensed text-poster-md text-charcoal mb-6 leading-[0.95]">
               Audience by age
             </h2>
             <div className="space-y-4">
@@ -195,7 +195,7 @@ export default function CollabsPage() {
         <div className="mb-20">
           <div className="flex items-center gap-2 mb-6">
             <TrendingUp size={14} className="text-accent-warm" />
-            <h2 className="font-display text-display-sm text-charcoal font-medium">
+            <h2 className="font-condensed text-poster-md text-charcoal leading-[0.95]">
               Past collaborations
             </h2>
           </div>

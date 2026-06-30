@@ -39,9 +39,8 @@ export function GymSection() {
             <p className="text-[11px] tracking-[0.18em] uppercase text-cream/40 font-medium mb-3">
               Gym & fitness
             </p>
-            <h2 className="font-display text-display-md text-cream mb-5 leading-tight">
-              Gym is literally{" "}
-              <em className="text-muted-gray font-light">my therapy</em>
+            <h2 className="font-condensed text-poster-md text-cream mb-5 leading-[0.95]">
+              Gym is my therapy
             </h2>
             <p className="text-cream/60 text-sm leading-relaxed max-w-sm mb-8">
               Started in October 2023 because I wanted to get out of my head 
@@ -51,11 +50,11 @@ export function GymSection() {
             </p>
 
             {/* Stats */}
-            <div className="flex gap-8 mb-10">
+            <div className="flex gap-3 mb-10">
               {stats.map((stat) => (
-                <div key={stat.label}>
-                  <p className="font-display text-3xl font-medium text-cream">{stat.value}</p>
-                  <p className="text-[11px] tracking-[0.1em] uppercase text-cream/40 mt-0.5">{stat.label}</p>
+                <div key={stat.label} className="bg-cream/[0.06] border border-cream/10 rounded-xl px-4 py-3">
+                  <p className="font-condensed text-2xl text-cream">{stat.value}</p>
+                  <p className="text-[10px] tracking-[0.1em] uppercase text-cream/40 mt-1">{stat.label}</p>
                 </div>
               ))}
             </div>

@@ -35,7 +35,7 @@ const entries = [
   {
     date: "June 22, 2025",
     day: "Sunday",
-    title: "Hit a new PR on squats 🎉 — and my legs haven't forgiven me since",
+    title: "Hit a new PR on squats — and my legs haven't forgiven me since",
     excerpt:
       "80kg squat. Finally. Three months of being stuck at 72.5 and today it just happened. I cried a little. My legs cried a lot.",
     tag: "Gym",
@@ -68,7 +68,7 @@ const entries = [
   {
     date: "June 9, 2025",
     day: "Monday",
-    title: "New plant baby alert 🌱 — apartment is slowly becoming a jungle",
+    title: "New plant baby alert — apartment is slowly becoming a jungle",
     excerpt:
       "Bought a monstera and a snake plant this weekend. My apartment finally feels like home.",
     tag: "Room",

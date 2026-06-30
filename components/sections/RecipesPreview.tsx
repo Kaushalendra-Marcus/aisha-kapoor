@@ -37,7 +37,7 @@ const recipes = [
 
 export function RecipesPreview() {
   return (
-    <section className="section-padding bg-warm-beige">
+    <section className="section-padding bg-block-yellow">
       <div className="container-site">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -47,10 +47,10 @@ export function RecipesPreview() {
           className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12"
         >
           <div>
-            <p className="text-[11px] tracking-[0.18em] uppercase text-muted-gray font-medium mb-2">
+            <p className="text-[11px] tracking-[0.18em] uppercase text-warm-gray font-medium mb-2">
               From my kitchen
             </p>
-            <h2 className="font-display text-display-md text-charcoal">
+            <h2 className="font-condensed text-poster-md text-charcoal leading-[0.95]">
               Things I actually cook
             </h2>
           </div>
@@ -69,8 +69,8 @@ export function RecipesPreview() {
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
             >
-              <Link href={`/recipes/${recipe.slug}`} className="group block">
-                <div className="img-zoom relative aspect-[4/3] rounded-2xl overflow-hidden mb-4 shadow-soft">
+              <Link href={`/recipes/${recipe.slug}`} className="group block bg-off-white rounded-2xl p-3 hover:shadow-large transition-shadow duration-300">
+                <div className="img-zoom relative aspect-[4/3] rounded-xl overflow-hidden mb-4">
                   <Image
                     src={recipe.image}
                     alt={recipe.title}
@@ -82,13 +82,13 @@ export function RecipesPreview() {
                     <span className="tag-pill bg-cream/90 text-charcoal">{recipe.tag}</span>
                   </div>
                 </div>
-                <h3 className="font-display text-xl font-medium text-charcoal mb-2 group-hover:text-warm-gray transition-colors">
+                <h3 className="font-display text-xl font-medium text-charcoal mb-2 px-1 group-hover:text-warm-gray transition-colors">
                   {recipe.title}
                 </h3>
-                <p className="text-warm-gray text-sm leading-relaxed mb-4 line-clamp-2">
+                <p className="text-warm-gray text-sm leading-relaxed mb-4 px-1 line-clamp-2">
                   {recipe.desc}
                 </p>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-4 px-1 pb-2">
                   <span className="flex items-center gap-1.5 text-[11px] text-muted-gray">
                     <Clock size={11} /> {recipe.time}
                   </span>

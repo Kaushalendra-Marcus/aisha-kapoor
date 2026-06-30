@@ -46,7 +46,7 @@ const entries: Record<
   "squat-pr-june-22": {
     date: "June 22, 2025",
     day: "Sunday",
-    title: "Hit a new PR on squats 🎉 — and my legs haven't forgiven me since",
+    title: "Hit a new PR on squats — and my legs haven't forgiven me since",
     tag: "Gym",
     image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=1200&q=80",
     readTime: "2 min",
@@ -85,7 +85,7 @@ const entries: Record<
   "new-plant-baby": {
     date: "June 9, 2025",
     day: "Monday",
-    title: "New plant baby alert 🌱 — apartment is slowly becoming a jungle",
+    title: "New plant baby alert — apartment is slowly becoming a jungle",
     tag: "Room",
     image: "https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=1200&q=80",
     readTime: "2 min",

@@ -31,7 +31,7 @@ const journals = [
   {
     date: "June 22",
     day: "Sunday",
-    title: "Hit a new PR on squats 🎉 — and my legs haven't forgiven me since",
+    title: "Hit a new PR on squats — and my legs haven't forgiven me since",
     excerpt:
       "80kg squat. Finally. Three months of being stuck at 72.5 and today it just happened. I cried a little. My legs cried a lot.",
     tag: "Gym",
@@ -57,7 +57,7 @@ export function LatestJournal() {
             <p className="text-[11px] tracking-[0.18em] uppercase text-muted-gray font-medium mb-2">
               Daily journal
             </p>
-            <h2 className="font-display text-display-md text-charcoal">
+            <h2 className="font-condensed text-poster-md text-charcoal leading-[0.95]">
               What I&apos;ve been up to
             </h2>
           </div>

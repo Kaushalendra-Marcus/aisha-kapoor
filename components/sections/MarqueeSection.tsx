@@ -2,7 +2,7 @@
 
 const items = [
   "Morning Routine",
-  "Oat Latte Girl ☕",
+  "Oat Latte Girl",
   "Office Life",
   "Leg Day",
   "Healthy Recipes",
@@ -12,7 +12,7 @@ const items = [
   "OOTD",
   "Weekend Resets",
   "Skincare",
-  "Real Life ✦",
+  "Real Life",
 ];
 
 export function MarqueeSection() {

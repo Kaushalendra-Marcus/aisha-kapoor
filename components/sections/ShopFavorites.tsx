@@ -86,7 +86,7 @@ export function ShopFavorites() {
             <p className="text-[11px] tracking-[0.18em] uppercase text-muted-gray font-medium mb-2">
               Shop my picks
             </p>
-            <h2 className="font-display text-display-md text-charcoal">
+            <h2 className="font-condensed text-poster-md text-charcoal leading-[0.95]">
               Things I genuinely love
             </h2>
           </div>

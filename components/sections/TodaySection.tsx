@@ -73,27 +73,26 @@ export function TodaySection() {
   }, [isPlaying]);
 
   return (
-    <section className="section-padding bg-off-white">
+    <section className="section-padding bg-block-pink overflow-hidden">
       <div className="container-site">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6 }}
-          className="flex items-center gap-4 mb-12"
+          className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12"
         >
           <div>
-            <p className="text-[11px] tracking-[0.18em] uppercase text-muted-gray font-medium mb-1">
+            <p className="text-[11px] tracking-[0.18em] uppercase text-warm-gray font-medium mb-2">
               Right now
             </p>
-            <h2 className="font-display text-display-sm text-charcoal">
-              What&apos;s going on today
+            <h2 className="font-condensed text-poster-md text-charcoal leading-[0.95]">
+              What I&apos;m doing today
             </h2>
           </div>
-          <div className="flex-1 h-px bg-light-gray ml-4 hidden sm:block" />
-          <div className="hidden sm:flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-            <span className="text-[11px] text-muted-gray font-medium">Live update</span>
+          <div className="flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+            <span className="text-[11px] text-warm-gray font-medium">Live update</span>
           </div>
         </motion.div>
 
@@ -107,7 +106,7 @@ export function TodaySection() {
           {/* Coffee Card */}
           <motion.div
             variants={cardVariants}
-            className="bg-[#F5EFE6] rounded-2xl p-5 group hover:shadow-card transition-shadow duration-300 relative"
+            className="stat-card group relative"
             onMouseEnter={() => setIsCoffeeHovered(true)}
             onMouseLeave={() => setIsCoffeeHovered(false)}
           >
@@ -137,7 +136,7 @@ export function TodaySection() {
           {/* Workout Card */}
           <motion.div
             variants={cardVariants}
-            className="bg-[#EEF0F5] rounded-2xl p-5 group hover:shadow-card transition-shadow duration-300"
+            className="stat-card group"
           >
             <div className="flex items-start justify-between mb-6">
               <span className="text-[10px] tracking-[0.14em] uppercase text-warm-gray font-medium">
@@ -146,7 +145,7 @@ export function TodaySection() {
               <Dumbbell size={16} className="text-[#7A8BAA] opacity-70" />
             </div>
             <p className="font-display text-lg font-medium text-charcoal leading-snug mb-1.5">
-              Leg day 🦵
+              Leg day
             </p>
             <p className="text-xs text-warm-gray">Squats & hip thrusts · 6 PM</p>
           </motion.div>
@@ -154,7 +153,7 @@ export function TodaySection() {
           {/* Music Card */}
           <motion.div
             variants={cardVariants}
-            className="bg-[#F5EEF0] rounded-2xl p-5 group hover:shadow-card transition-shadow duration-300"
+            className="stat-card group"
           >
             <div className="flex items-start justify-between mb-4">
               <span className="text-[10px] tracking-[0.14em] uppercase text-warm-gray font-medium">
@@ -201,7 +200,7 @@ export function TodaySection() {
           {/* Outfit Card */}
           <motion.div
             variants={cardVariants}
-            className="bg-[#F0F5EE] rounded-2xl p-5 group hover:shadow-card transition-shadow duration-300"
+            className="stat-card group"
           >
             <div className="flex items-start justify-between mb-6">
               <span className="text-[10px] tracking-[0.14em] uppercase text-warm-gray font-medium">

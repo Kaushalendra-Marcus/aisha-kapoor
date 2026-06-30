@@ -177,17 +177,17 @@ export function HeroSection() {
 
           {/* Stats */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.85, duration: 0.6 }}
-            className="flex items-center gap-8 mt-16 pt-8 border-t border-light-gray"
+            className="flex flex-wrap items-stretch gap-3 mt-16"
           >
             {stats.map((stat) => (
-              <div key={stat.label}>
-                <div className="font-display text-2xl font-medium text-charcoal">
+              <div key={stat.label} className="stat-card min-w-[120px]">
+                <div className="font-condensed text-2xl text-charcoal">
                   {stat.value}
                 </div>
-                <div className="text-[11px] tracking-[0.1em] uppercase text-muted-gray font-medium mt-0.5">
+                <div className="text-[10px] tracking-[0.1em] uppercase text-muted-gray font-medium mt-1">
                   {stat.label}
                 </div>
               </div>

@@ -66,7 +66,7 @@ export default function AboutPage() {
 
         {/* Story */}
         <div className="max-w-2xl mb-24 space-y-5 text-warm-gray text-[15px] leading-relaxed font-light">
-          <h2 className="font-display text-display-sm text-charcoal mb-2 font-medium">
+          <h2 className="font-condensed text-poster-md text-charcoal mb-4 leading-[0.95]">
             How this all started
           </h2>
           <p>
@@ -93,7 +93,7 @@ export default function AboutPage() {
 
         {/* Timeline */}
         <div className="mb-24">
-          <h2 className="font-display text-display-sm text-charcoal mb-12 font-medium text-center">
+          <h2 className="font-condensed text-poster-md text-charcoal mb-12 leading-[0.95] text-center">
             A quick timeline
           </h2>
           <AboutTimeline />

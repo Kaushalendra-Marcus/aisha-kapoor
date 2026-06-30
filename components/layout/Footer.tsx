@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Instagram, Youtube, Mail } from "lucide-react";
+import { Instagram, Youtube, Mail, MapPin } from "lucide-react";
 
 const footerLinks = {
   Life: [
@@ -100,7 +100,9 @@ export function Footer() {
             <Link href="/terms" className="text-xs text-cream/30 hover:text-cream/60 transition-colors">
               Terms
             </Link>
-            <span className="text-xs text-cream/20">Bangalore, India 🇮🇳</span>
+            <span className="text-xs text-cream/20 flex items-center gap-1.5">
+              <MapPin size={11} /> Bangalore, India
+            </span>
           </div>
         </div>
       </div>
