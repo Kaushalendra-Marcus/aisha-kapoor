@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Check, Moon } from "lucide-react";
 
 export function CozyDimmer() {
   const [isCozy, setIsCozy] = useState(false);
@@ -115,10 +116,10 @@ export function CozyDimmer() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.5 }}
             transition={{ duration: 0.25 }}
-            className="text-base leading-none"
+            className="flex items-center justify-center"
             aria-hidden="true"
           >
-            🕯️
+            <Moon size={15} className="text-stone-500" />
           </motion.span>
         )}
       </AnimatePresence>
@@ -132,8 +133,9 @@ export function CozyDimmer() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -6 }}
             transition={{ duration: 0.2 }}
+            className="flex items-center gap-1"
           >
-            ✓ Cozy
+            <Check size={12} /> Cozy
           </motion.span>
         ) : (
           <motion.span
