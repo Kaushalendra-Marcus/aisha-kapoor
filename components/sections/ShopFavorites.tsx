@@ -1,11 +1,12 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ExternalLink, Star } from "lucide-react";
 
-const categories = ["All", "Desk setup", "Skincare", "Gym", "Kitchen", "Fashion"];
+const categories = ["All", "Desk setup", "Skincare", "Gym", "Kitchen"];
 
 const products = [
   {
@@ -44,9 +45,33 @@ const products = [
     image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=300&q=80",
     tag: "Morning use",
   },
+  {
+    name: "JBL Tune 520BT headphones",
+    category: "Gym",
+    desc: "On every single gym session. Battery lasts the whole week.",
+    price: "₹2,499",
+    rating: 5,
+    image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=300&q=80",
+    tag: "Gym essential",
+  },
+  {
+    name: "Borosil glass meal prep containers",
+    category: "Kitchen",
+    desc: "Microwave safe, doesn't stain, makes meal prep so much easier.",
+    price: "₹1,199",
+    rating: 5,
+    image: "https://images.unsplash.com/photo-1584346133934-a3afd2a33c4e?w=300&q=80",
+    tag: "Kitchen",
+  },
 ];
 
 export function ShopFavorites() {
+  const [activeCategory, setActiveCategory] = useState<string>("All");
+
+  const filteredProducts = activeCategory === "All"
+    ? products
+    : products.filter((p) => p.category === activeCategory);
+
   return (
     <section className="section-padding bg-cream">
       <div className="container-site">
@@ -82,75 +107,91 @@ export function ShopFavorites() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="flex gap-2 flex-wrap mb-8"
+          className="flex gap-2.5 flex-wrap mb-8"
         >
-          {categories.map((cat, i) => (
-            <button
-              key={cat}
-              className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${
-                i === 0
-                  ? "bg-charcoal text-cream"
-                  : "bg-warm-beige text-warm-gray hover:bg-light-gray hover:text-charcoal"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
+          {categories.map((cat) => {
+            const isActive = cat === activeCategory;
+            return (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={`relative px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-300 ${
+                  isActive ? "text-cream animate-pulse-subtle" : "text-warm-gray hover:text-charcoal bg-warm-beige/40"
+                }`}
+              >
+                {isActive && (
+                  <motion.div
+                    layoutId="activeFavCategory"
+                    transition={{ type: "spring", stiffness: 350, damping: 25 }}
+                    className="absolute inset-0 bg-charcoal rounded-full -z-10"
+                  />
+                )}
+                <span className="relative z-10">{cat}</span>
+              </button>
+            );
+          })}
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {products.map((product, i) => (
-            <motion.div
-              key={product.name}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="group bg-off-white rounded-2xl overflow-hidden hover:shadow-card transition-shadow duration-300"
-            >
-              <div className="img-zoom relative aspect-square overflow-hidden bg-warm-beige">
-                <Image
-                  src={product.image}
-                  alt={product.name}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                />
-                <div className="absolute top-3 left-3">
-                  <span className="tag-pill bg-cream/90 text-charcoal">{product.tag}</span>
+        <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <AnimatePresence mode="popLayout">
+            {filteredProducts.map((product) => (
+              <motion.div
+                layout
+                key={product.name}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                className="group bg-off-white rounded-2xl overflow-hidden hover:shadow-card transition-shadow duration-300 flex flex-col justify-between"
+              >
+                <div>
+                  <div className="img-zoom relative aspect-square overflow-hidden bg-warm-beige">
+                    <Image
+                      src={product.image}
+                      alt={product.name}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    />
+                    <div className="absolute top-3 left-3">
+                      <span className="tag-pill bg-cream/90 text-charcoal">{product.tag}</span>
+                    </div>
+                  </div>
+                  <div className="p-5 pb-0">
+                    <p className="text-[10px] tracking-[0.12em] uppercase text-muted-gray mb-1">
+                      {product.category}
+                    </p>
+                    <h3 className="font-medium text-charcoal text-sm mb-1.5 leading-snug">
+                      {product.name}
+                    </h3>
+                    <p className="text-xs text-warm-gray leading-relaxed mb-3 line-clamp-2">
+                      {product.desc}
+                    </p>
+                    <div className="flex items-center gap-1 mb-4">
+                      {Array.from({ length: product.rating }).map((_, j) => (
+                        <Star key={j} size={10} className="text-accent-warm fill-accent-warm" />
+                      ))}
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div className="p-4">
-                <p className="text-[10px] tracking-[0.12em] uppercase text-muted-gray mb-1">
-                  {product.category}
-                </p>
-                <h3 className="font-medium text-charcoal text-sm mb-1.5 leading-snug">
-                  {product.name}
-                </h3>
-                <p className="text-xs text-warm-gray leading-relaxed mb-3 line-clamp-2">
-                  {product.desc}
-                </p>
-                <div className="flex items-center gap-1 mb-4">
-                  {Array.from({ length: product.rating }).map((_, j) => (
-                    <Star key={j} size={10} className="text-accent-warm fill-accent-warm" />
-                  ))}
+                <div className="p-5 pt-0">
+                  <div className="flex items-center justify-between border-t border-light-gray/40 pt-4">
+                    <span className="font-display text-base font-medium text-charcoal">
+                      {product.price}
+                    </span>
+                    <a
+                      href="#"
+                      className="flex items-center gap-1.5 text-[11px] font-medium text-warm-gray hover:text-charcoal transition-colors group/link"
+                    >
+                      <span>Shop</span>
+                      <ExternalLink size={10} className="group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform duration-200" />
+                    </a>
+                  </div>
                 </div>
-                <div className="flex items-center justify-between">
-                  <span className="font-display text-base font-medium text-charcoal">
-                    {product.price}
-                  </span>
-                  <a
-                    href="#"
-                    className="flex items-center gap-1.5 text-[11px] font-medium text-warm-gray hover:text-charcoal transition-colors"
-                  >
-                    <span>Shop</span>
-                    <ExternalLink size={10} />
-                  </a>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
       </div>
     </section>
   );

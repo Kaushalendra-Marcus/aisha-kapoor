@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { Instagram, Youtube, TrendingUp, Users, Eye, Heart } from "lucide-react";
 
@@ -31,8 +32,63 @@ const pastWork = [
 ];
 
 export default function CollabsPage() {
+  const [brand, setBrand] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
+  const [showToast, setShowToast] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!brand.trim() || !email.trim() || !message.trim()) {
+      alert("Please fill in all fields.");
+      return;
+    }
+    if (!email.includes("@")) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
+    setStatus("submitting");
+
+    setTimeout(() => {
+      setStatus("success");
+      setShowToast(true);
+      setBrand("");
+      setEmail("");
+      setMessage("");
+
+      setTimeout(() => {
+        setShowToast(false);
+        setStatus("idle");
+      }, 4000);
+    }, 1200);
+  };
+
   return (
-    <div className="pt-32 pb-24">
+    <div className="pt-32 pb-24 relative">
+      {/* Toast Notification */}
+      <AnimatePresence>
+        {showToast && (
+          <motion.div
+            initial={{ opacity: 0, y: -20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -20, scale: 0.95 }}
+            className="fixed top-24 right-5 sm:right-8 z-50 glass bg-cream/95 text-charcoal border border-accent-rose/30 px-6 py-4 rounded-2xl shadow-large max-w-sm flex items-start gap-3"
+          >
+            <div className="w-5 h-5 rounded-full bg-accent-rose/10 text-accent-rose flex items-center justify-center flex-shrink-0 mt-0.5 font-bold text-xs">
+              ✓
+            </div>
+            <div>
+              <p className="text-xs font-semibold text-charcoal">Inquiry Sent!</p>
+              <p className="text-[11px] text-warm-gray mt-1 leading-relaxed">
+                Thank you! Aisha will review your brand proposal and get back to you within 2-3 business days.
+              </p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <div className="container-site">
         {/* Hero */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 items-center mb-20">
@@ -164,24 +220,48 @@ export default function CollabsPage() {
             Tell me about your brand and what you have in mind — I&apos;ll get back 
             to you within 2–3 business days.
           </p>
-          <form className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4">
             <input
               type="text"
+              required
               placeholder="Brand name"
-              className="w-full bg-cream border border-light-gray rounded-xl px-4 py-3 text-sm outline-none focus:border-charcoal transition-colors"
+              value={brand}
+              onChange={(e) => setBrand(e.target.value)}
+              disabled={status === "submitting"}
+              className="w-full bg-cream border border-light-gray rounded-xl px-4 py-3 text-sm outline-none focus:border-charcoal transition-colors disabled:opacity-50"
             />
             <input
               type="email"
+              required
               placeholder="Work email"
-              className="w-full bg-cream border border-light-gray rounded-xl px-4 py-3 text-sm outline-none focus:border-charcoal transition-colors"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              disabled={status === "submitting"}
+              className="w-full bg-cream border border-light-gray rounded-xl px-4 py-3 text-sm outline-none focus:border-charcoal transition-colors disabled:opacity-50"
             />
             <textarea
+              required
               placeholder="Tell me about the collaboration"
               rows={4}
-              className="w-full bg-cream border border-light-gray rounded-xl px-4 py-3 text-sm outline-none focus:border-charcoal transition-colors resize-none"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              disabled={status === "submitting"}
+              className="w-full bg-cream border border-light-gray rounded-xl px-4 py-3 text-sm outline-none focus:border-charcoal transition-colors resize-none disabled:opacity-50"
             />
-            <button type="button" className="btn-primary w-full justify-center">
-              Send inquiry
+            <button
+              type="submit"
+              disabled={status === "submitting"}
+              className="btn-primary w-full justify-center disabled:opacity-80 disabled:cursor-not-allowed"
+            >
+              {status === "submitting" ? (
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-cream animate-bounce" style={{ animationDelay: "0ms" }} />
+                  <span className="w-2 h-2 rounded-full bg-cream animate-bounce" style={{ animationDelay: "150ms" }} />
+                  <span className="w-2 h-2 rounded-full bg-cream animate-bounce" style={{ animationDelay: "300ms" }} />
+                </div>
+              ) : (
+                "Send inquiry"
+              )}
             </button>
           </form>
         </div>

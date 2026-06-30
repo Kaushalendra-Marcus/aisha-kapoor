@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Mail, Instagram, Youtube } from "lucide-react";
+import { ContactFormInteractive } from "@/components/sections/ContactFormInteractive";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -68,34 +69,7 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <div className="bg-off-white rounded-3xl p-10">
-            <form className="space-y-4">
-              <div>
-                <label className="text-xs font-medium text-charcoal mb-1.5 block">Name</label>
-                <input
-                  type="text"
-                  className="w-full bg-cream border border-light-gray rounded-xl px-4 py-3 text-sm outline-none focus:border-charcoal transition-colors"
-                />
-              </div>
-              <div>
-                <label className="text-xs font-medium text-charcoal mb-1.5 block">Email</label>
-                <input
-                  type="email"
-                  className="w-full bg-cream border border-light-gray rounded-xl px-4 py-3 text-sm outline-none focus:border-charcoal transition-colors"
-                />
-              </div>
-              <div>
-                <label className="text-xs font-medium text-charcoal mb-1.5 block">Message</label>
-                <textarea
-                  rows={5}
-                  className="w-full bg-cream border border-light-gray rounded-xl px-4 py-3 text-sm outline-none focus:border-charcoal transition-colors resize-none"
-                />
-              </div>
-              <button type="button" className="btn-primary w-full justify-center">
-                Send message
-              </button>
-            </form>
-          </div>
+          <ContactFormInteractive />
         </div>
       </div>
     </div>
