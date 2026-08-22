@@ -30,7 +30,7 @@ export function AboutTeaser() {
               {/* Main image */}
               <div className="img-zoom absolute inset-0 rounded-3xl overflow-hidden shadow-warm">
                 <Image
-                  src="/images/main_image.png"
+                  src="/images/image.png"
                   alt="Aisha Kapoor"
                   fill
                   className="object-cover"
