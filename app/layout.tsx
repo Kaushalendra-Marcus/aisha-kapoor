@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://aishakapoor.in",
+    url: "https://aisha-kapoor.vercel.app/",
     siteName: "Aisha Kapoor",
     title: "Aisha Kapoor — Life in Bangalore",
     description:
