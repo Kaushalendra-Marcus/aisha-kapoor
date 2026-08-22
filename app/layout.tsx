@@ -5,7 +5,7 @@ import { Footer } from "@/components/layout/Footer";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { CustomCursor } from "@/components/layout/CustomCursor";
 import { CozyDimmer } from "@/components/ui/CozyDimmer";
-
+import { Analytics } from "@vercel/analytics/next"
 export const metadata: Metadata = {
   title: {
     default: "Aisha Kapoor — Life in Bangalore",
@@ -60,6 +60,7 @@ export default function RootLayout({
         <SmoothScroll>
           <Navbar />
           <main>{children}</main>
+          <Analytics />
           <Footer />
         </SmoothScroll>
         <CozyDimmer />
