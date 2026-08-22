@@ -244,7 +244,7 @@ export function InstagramSection() {
           {/* Reach breakdown — proof these reels travel well beyond the existing audience */}
           <div className="bg-cream rounded-2xl p-5 sm:p-6 border border-light-gray/60">
             <div className="flex items-center justify-between mb-3">
-              <p className="text-xs font-medium text-charcoal">Who's actually watching</p>
+              <p className="text-xs font-medium text-charcoal">Who&apos;s actually watching</p>
               <p className="text-[11px] text-muted-gray">584.8K accounts reached</p>
             </div>
             <div className="h-2.5 w-full rounded-full overflow-hidden flex bg-warm-beige">
