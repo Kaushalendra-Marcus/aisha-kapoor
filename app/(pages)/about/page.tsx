@@ -43,7 +43,7 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 mb-24">
           <div className="lg:col-span-2 relative aspect-[3/4] rounded-3xl overflow-hidden shadow-warm">
             <Image
-              src= '/public/images/main_image.png'
+              src="/images/main_image.png"
               alt="Aisha Kapoor"
               fill
               className="object-cover"
