@@ -20,16 +20,16 @@ const HANDLE = "@aishadiaries.23";
 const profile = {
   name: "Aisha Kapoor",
   bio: "Artist · Product Designer, Bangalore — coffee > everything, trying to figure life out",
-  followers: "456",
-  posts: "19",
+  followers: "100K+",
+  posts: "100+",
 };
 
 // Real numbers from Instagram's own Account Insights
 const insights = [
   { icon: Eye, value: "963.8K", label: "Reel views" },
   { icon: TrendingUp, value: "584.8K", label: "Accounts reached" },
-  { icon: Users, value: "456", label: "Followers" },
-  { icon: Grid3x3, value: "19", label: "Posts" },
+  { icon: Users, value: "100K+", label: "Followers" },
+  { icon: Grid3x3, value: "100+", label: "Posts" },
 ];
 
 const reachSplit = [
