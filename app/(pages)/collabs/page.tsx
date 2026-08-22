@@ -6,10 +6,10 @@ import Image from "next/image";
 import { TrendingUp, Users, Eye, Heart } from "lucide-react";
 
 const metrics = [
-  { icon: Users, value: "456", label: "Instagram followers" },
+  { icon: Users, value: "100K+", label: "Instagram followers" },
   { icon: TrendingUp, value: "585K", label: "Accounts reached" },
   { icon: Eye, value: "964K", label: "Reel views" },
-  { icon: Heart, value: "19", label: "Reels & posts" },
+  { icon: Heart, value: "50+", label: "Reels & posts" },
 ];
 
 const demographics = [
