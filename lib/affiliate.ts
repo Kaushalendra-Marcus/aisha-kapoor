@@ -267,3 +267,62 @@ export const AFFILIATE_DISCLOSURE_SHORT =
 
 export const AFFILIATE_DISCLOSURE_LONG =
   "Heads up: some links on this page are affiliate links (mostly Amazon.in). If you buy through them, I earn a small commission at no extra cost to you. I only recommend things I actually use and love. As an Amazon Associate I earn from qualifying purchases.";
+
+// ── REELS → PRODUCTS mapping ("Shop this reel") ──
+// HOW TO ADD YOUR LATEST REEL (30 seconds):
+// 1. Open your reel in Instagram app → Share → Copy link
+// 2. Add one entry below: { id, url, title, productIds }
+// 3. productIds = ids from PRODUCTS above (e.g. "sony-xm5"), outfitId = id from OUTFITS
+export interface Reel {
+  id: string;
+  url: string;
+  title: string;
+  caption: string;
+  productIds: string[];
+  outfitId?: string;
+}
+
+export const REELS: Reel[] = [
+  {
+    id: "featured-reel",
+    url: "https://www.instagram.com/reel/DZ8gSyUzQ_5/",
+    title: "Featured reel",
+    caption: "My most-watched reel — the gear in it is linked below.",
+    productIds: ["sony-xm5", "jbl-520bt"],
+  },
+  {
+    id: "bike-ride",
+    url: "https://www.instagram.com/reel/DaN9ZItz45P/",
+    title: "Travel · Bike ride",
+    caption: "What I carried on my bike trip — shop it here.",
+    productIds: ["milton-bottle", "jbl-520bt"],
+  },
+  {
+    id: "night-party",
+    url: "https://www.instagram.com/reel/DaGZFNuzHBA/",
+    title: "Night party look",
+    caption: "The full party outfit, piece by piece.",
+    outfitId: "weekend-brunch",
+    productIds: [],
+  },
+  {
+    id: "wedding-look",
+    url: "https://www.instagram.com/reel/DaD1WAcTROK/",
+    title: "Wedding guest look",
+    caption: "What I wore to a wedding — full breakdown.",
+    outfitId: "office-casual-tuesday",
+    productIds: [],
+  },
+  // ← PASTE YOUR NEW REEL HERE, e.g.:
+  // { id: "my-new-reel", url: "https://www.instagram.com/reel/XXXX/", title: "My latest reel", caption: "...", productIds: ["dot-key-moisturizer"] },
+];
+
+export function reelProducts(reel: Reel): Product[] {
+  return reel.productIds
+    .map((id) => PRODUCTS.find((p) => p.id === id))
+    .filter((p): p is Product => Boolean(p));
+}
+
+export function reelOutfit(reel: Reel): Outfit | undefined {
+  return reel.outfitId ? OUTFITS.find((o) => o.id === reel.outfitId) : undefined;
+}

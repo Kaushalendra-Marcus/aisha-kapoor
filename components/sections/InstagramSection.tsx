@@ -12,7 +12,9 @@ import {
   Grid3x3,
   Eye,
   TrendingUp,
+  ShoppingBag,
 } from "lucide-react";
+import { REELS, reelProducts, reelOutfit } from "@/lib/affiliate";
 
 const PROFILE_URL = "https://www.instagram.com/aishadiaries.23/";
 const HANDLE = "@aishadiaries.23";
@@ -37,11 +39,7 @@ const reachSplit = [
   { label: "Followers", value: 0.4, color: "bg-accent-warm" },
 ];
 
-const reels = [
-  { url: "https://www.instagram.com/reel/DZ8gSyUzQ_5/", tag: "Featured reel" },
-  { url: "https://www.instagram.com/reel/DaN9ZItz45P/", tag: "Travel · Bike ride" },
-  { url: "https://www.instagram.com/reel/DaGZFNuzHBA/", tag: "Night party" },
-];
+const reels = REELS;
 
 declare global {
   interface Window {
@@ -143,7 +141,7 @@ export function InstagramSection() {
             On Instagram
           </p>
           <h2 className="font-condensed text-poster-md text-charcoal leading-[0.95]">
-            A few reels worth a watch
+            Watch the reel, shop the look
           </h2>
           <p className="mt-3 text-sm text-warm-gray max-w-lg">
             Came from Instagram?{" "}
@@ -199,8 +197,10 @@ export function InstagramSection() {
         </motion.div>
 
         {/* Real Instagram embeds, evenly laid out, equal-width columns */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start mb-14">
-          {reels.map((reel, i) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-start mb-14">
+          {reels.map((reel, i) => {
+            const shoppableCount = reelProducts(reel).length + (reelOutfit(reel) ? 1 : 0);
+            return (
             <motion.div
               key={reel.url}
               initial={{ opacity: 0, y: 20 }}
@@ -210,14 +210,14 @@ export function InstagramSection() {
             >
               <div className="mb-3 flex items-center justify-between">
                 <span className="text-[10px] tracking-[0.12em] uppercase text-warm-gray font-semibold bg-warm-beige px-2.5 py-1 rounded-full">
-                  {reel.tag}
+                  {reel.title}
                 </span>
                 <a
                   href={reel.url}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-muted-gray hover:text-charcoal transition-colors"
-                  aria-label={`Open ${reel.tag} reel on Instagram`}
+                  aria-label={`Open ${reel.title} reel on Instagram`}
                 >
                   <ExternalLink size={13} />
                 </a>
@@ -225,8 +225,18 @@ export function InstagramSection() {
               <div className="rounded-2xl overflow-hidden border border-light-gray shadow-medium bg-white transition-transform duration-300 hover:-translate-y-1">
                 <InstagramReelEmbed url={reel.url} />
               </div>
+              {shoppableCount > 0 && (
+                <a
+                  href={`/shop#reel-${reel.id}`}
+                  className="btn-primary w-full justify-center mt-3 py-2.5 text-xs"
+                >
+                  <ShoppingBag size={12} />
+                  <span>Shop this reel ({shoppableCount} {shoppableCount === 1 ? "item" : "items"})</span>
+                </a>
+              )}
             </motion.div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Real account insights */}

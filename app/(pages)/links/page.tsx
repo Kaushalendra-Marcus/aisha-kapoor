@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Instagram, Star, ShoppingBag } from "lucide-react";
+import { ArrowUpRight, Instagram, Star, ShoppingBag, Play, ExternalLink } from "lucide-react";
 import {
   LINKS_PAGE_ITEMS,
   PRODUCTS,
+  REELS,
   INSTAGRAM_URL,
   INSTAGRAM_HANDLE,
   productUrl,
+  reelProducts,
+  reelOutfit,
   AFFILIATE_DISCLOSURE_SHORT,
 } from "@/lib/affiliate";
 
@@ -81,6 +84,81 @@ export default function LinksPage() {
               </Link>
             )
           )}
+        </div>
+
+        {/* Latest reels — shop the look */}
+        <div className="mb-8">
+          <h2 className="font-condensed text-xl text-charcoal mb-4">Latest reels — shop the look 🎬</h2>
+          <div className="space-y-3">
+            {REELS.map((reel) => {
+              const products = reelProducts(reel);
+              const outfit = reelOutfit(reel);
+              const count = products.length + (outfit ? outfit.items.length : 0);
+              return (
+                <div
+                  key={reel.id}
+                  className="rounded-2xl bg-off-white border border-light-gray/60 p-4"
+                >
+                  <div className="flex items-center justify-between mb-1">
+                    <p className="text-sm font-medium text-charcoal">{reel.title}</p>
+                    <a
+                      href={reel.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 text-[11px] text-muted-gray hover:text-charcoal"
+                    >
+                      <Play size={10} /> Watch <ExternalLink size={9} />
+                    </a>
+                  </div>
+                  <p className="text-[11px] text-warm-gray mb-3">{reel.caption}</p>
+                  <div className="space-y-2">
+                    {products.map((p) => (
+                      <a
+                        key={p.id}
+                        href={productUrl(p)}
+                        target="_blank"
+                        rel="nofollow sponsored noopener noreferrer"
+                        className="flex items-center gap-3 rounded-xl bg-cream p-2.5"
+                      >
+                        <div className="relative h-11 w-11 flex-shrink-0 overflow-hidden rounded-lg bg-warm-beige">
+                          <Image src={p.image} alt={p.name} fill className="object-cover" sizes="44px" />
+                        </div>
+                        <span className="min-w-0 flex-1">
+                          <span className="block truncate text-xs font-medium text-charcoal">{p.name}</span>
+                          <span className="block text-xs font-display text-charcoal">{p.price}</span>
+                        </span>
+                        <span className="flex-shrink-0 rounded-full bg-charcoal px-3 py-1.5 text-[10px] font-medium text-cream">
+                          Buy Now
+                        </span>
+                      </a>
+                    ))}
+                    {outfit && (
+                      <Link
+                        href="/outfits"
+                        className="flex items-center gap-3 rounded-xl bg-soft-pink/40 border border-dashed border-accent-rose/50 p-2.5"
+                      >
+                        <div className="relative h-11 w-11 flex-shrink-0 overflow-hidden rounded-lg bg-warm-beige">
+                          <Image src={outfit.image} alt={outfit.title} fill className="object-cover" sizes="44px" />
+                        </div>
+                        <span className="min-w-0 flex-1">
+                          <span className="block truncate text-xs font-medium text-charcoal">
+                            {outfit.title} — full look ({outfit.items.length} items)
+                          </span>
+                          <span className="block text-xs font-display text-charcoal">{outfit.total}</span>
+                        </span>
+                        <span className="flex-shrink-0 rounded-full bg-accent-rose px-3 py-1.5 text-[10px] font-medium text-cream">
+                          Shop look
+                        </span>
+                      </Link>
+                    )}
+                    {count === 0 && (
+                      <p className="text-[11px] text-muted-gray">Links dropping soon ✨</p>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
 
         {/* Top picks */}
