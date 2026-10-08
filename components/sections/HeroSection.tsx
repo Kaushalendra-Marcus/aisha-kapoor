@@ -9,7 +9,7 @@ import Image from "next/image";
 const stats = [
   { value: "100K", label: "Instagram" },
   { value: "2M+", label: "Accounts reached" },
-  { value: "6M+", label: "Reel views" },
+  { value: "10M+", label: "Reel views" },
 ];
 
 export function HeroSection() {

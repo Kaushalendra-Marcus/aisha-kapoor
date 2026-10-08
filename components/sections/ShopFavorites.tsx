@@ -43,11 +43,6 @@ export function ShopFavorites() {
           </Link>
         </motion.div>
 
-        <p className="text-warm-gray text-sm mb-4 max-w-lg">
-          Ye sab maine khud kharida, use kiya aur pasand kiya — ab tum bhi
-          kharid sakte ho. Tap <strong className="text-charcoal">Buy Now</strong> to
-          get it on Amazon. You pay nothing extra, I earn a small commission.
-        </p>
         <div className="mb-10 max-w-lg">
           <AffiliateDisclosure />
         </div>

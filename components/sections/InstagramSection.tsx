@@ -26,7 +26,7 @@ const profile = {
 
 // Real numbers from Instagram's own Account Insights
 const insights = [
-  { icon: Eye, value: "963.8K", label: "Reel views" },
+  { icon: Eye, value: "10M", label: "Reel views" },
   { icon: TrendingUp, value: "584.8K", label: "Accounts reached" },
   { icon: Users, value: "100K+", label: "Followers" },
   { icon: Grid3x3, value: "100+", label: "Posts" },

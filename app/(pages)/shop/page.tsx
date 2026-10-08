@@ -20,13 +20,7 @@ export default function ShopPage() {
           <h1 className="font-display text-display-lg text-charcoal leading-[1.0] mb-6">
             Everything I use, you can buy
           </h1>
-          <p className="text-warm-gray text-base leading-relaxed mb-6">
-            Dekho, pasand karo, kharido. Only things I actually own and use —
-            every card below has a <strong className="text-charcoal">Buy Now</strong> button
-            that takes you straight to Amazon. You pay nothing extra, I earn a
-            small commission.
-          </p>
-          <AffiliateDisclosure variant="long" />
+          <AffiliateDisclosure />
         </div>
 
         <div className="mt-12">

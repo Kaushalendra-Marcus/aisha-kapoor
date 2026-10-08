@@ -8,7 +8,7 @@ import { TrendingUp, Users, Eye, Heart } from "lucide-react";
 const metrics = [
   { icon: Users, value: "100K+", label: "Instagram followers" },
   { icon: TrendingUp, value: "585K", label: "Accounts reached" },
-  { icon: Eye, value: "964K", label: "Reel views" },
+  { icon: Eye, value: "10M", label: "Reel views" },
   { icon: Heart, value: "50+", label: "Reels & posts" },
 ];
 
