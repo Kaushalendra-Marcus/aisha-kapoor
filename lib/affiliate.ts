@@ -63,6 +63,19 @@ export const PRODUCTS: Product[] = [
     searchKeyword: "Noise wireless bluetooth headphones",
   },
   {
+    id: "apple-watch-black-sport",
+    name: "Apple Watch (Black Aluminium, Sport Band)",
+    category: "Gym",
+    desc: "My everyday smartwatch — tracks workouts, sleep and steps. Full Apple experience on the wrist.",
+    price: "Check on Amazon",
+    rating: 5,
+    image: "https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=600&q=80",
+    tag: "My product pick",
+    // Direct dp link so YOUR tag (newshaqseller-21) is applied via withAmazonTag.
+    affiliateUrl: "https://www.amazon.in/dp/B0FQFM65B7",
+    searchKeyword: "Apple Watch black aluminium sport band",
+  },
+  {
     id: "sony-xm5",
     name: "Sony WH-1000XM5",
     category: "Desk setup",
