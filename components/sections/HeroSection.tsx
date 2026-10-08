@@ -49,7 +49,7 @@ export function HeroSection() {
       >
         <div
           data-parallax="0.3"
-          className="w-36 h-48 lg:w-52 lg:h-72 rounded-3xl overflow-hidden shadow-warm"
+          className="relative w-36 h-48 lg:w-52 lg:h-72 rounded-3xl overflow-hidden shadow-warm"
         >
           <Image
             src="/images/profile1.png"
@@ -69,7 +69,7 @@ export function HeroSection() {
       >
         <div
           data-parallax="0.6"
-          className="w-28 h-36 lg:w-40 lg:h-52 rounded-2xl overflow-hidden shadow-medium"
+          className="relative w-28 h-36 lg:w-40 lg:h-52 rounded-2xl overflow-hidden shadow-medium"
         >
           <Image
             src="/images/profile2.png"
@@ -81,24 +81,33 @@ export function HeroSection() {
         </div>
       </motion.div>
 
+      {/* Floating mini shop card */}
       <motion.div
-        initial={{ opacity: 0, y: 20, rotate: 2 }}
-        animate={{ opacity: 0.5, y: 0, rotate: 2 }}
+        initial={{ opacity: 0, y: 20, rotate: -2 }}
+        animate={{ opacity: 1, y: 0, rotate: -2 }}
         transition={{ delay: 1.2, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute top-[30%] left-[5%] hidden lg:block"
+        className="absolute bottom-[22%] left-[5%] hidden lg:block"
       >
-        <div
+        <Link
+          href="/shop"
           data-parallax="0.4"
-          className="w-24 h-32 lg:w-36 lg:h-48 rounded-2xl overflow-hidden shadow-soft"
+          className="glass flex items-center gap-3 rounded-2xl px-4 py-3 shadow-medium transition-transform hover:-translate-y-1"
         >
-          <Image
-            src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=300&q=80"
-            alt="Gym"
-            fill
-            className="object-cover"
-            sizes="140px"
-          />
-        </div>
+          <div className="relative h-12 w-12 overflow-hidden rounded-xl bg-warm-beige">
+            <Image
+              src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=200&q=80"
+              alt="Noise headphones"
+              fill
+              className="object-cover"
+              sizes="48px"
+            />
+          </div>
+          <div>
+            <p className="text-[10px] uppercase tracking-[0.12em] text-muted-gray">Bestseller</p>
+            <p className="text-xs font-medium text-charcoal">Noise Headphones</p>
+            <p className="text-[11px] font-medium text-accent-rose">Shop now →</p>
+          </div>
+        </Link>
       </motion.div>
 
       {/* Main content */}

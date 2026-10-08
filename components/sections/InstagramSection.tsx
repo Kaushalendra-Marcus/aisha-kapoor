@@ -1,20 +1,18 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Script from "next/script";
 import {
   Instagram,
   ExternalLink,
-  Loader2,
   Users,
   Grid3x3,
   Eye,
   TrendingUp,
   ShoppingBag,
+  Play,
 } from "lucide-react";
-import { REELS, reelProducts, reelOutfit } from "@/lib/affiliate";
+import { REELS, reelProducts, reelOutfit, type Reel } from "@/lib/affiliate";
 
 const PROFILE_URL = "https://www.instagram.com/aishadiaries.23/";
 const HANDLE = "@aishadiaries.23";
@@ -41,89 +39,108 @@ const reachSplit = [
 
 const reels = REELS;
 
-declare global {
-  interface Window {
-    instgrm?: {
-      Embeds: { process: () => void };
-    };
-  }
-}
+// Soft gradient covers — one per reel. Always visible, no external
+// script needed (Instagram's embed.js often fails to load / stays blank).
+const REEL_COVERS = [
+  "linear-gradient(150deg, #E9CFC6 0%, #C4857A 55%, #8E5A52 100%)",
+  "linear-gradient(150deg, #D4E0EA 0%, #93A9C4 55%, #5B7186 100%)",
+  "linear-gradient(150deg, #F0D894 0%, #C99B5F 55%, #7A5A30 100%)",
+  "linear-gradient(150deg, #EDE6DA 0%, #B9A892 55%, #6E5F4C 100%)",
+  "linear-gradient(150deg, #E3B7A9 0%, #A86A5E 55%, #5F3A33 100%)",
+  "linear-gradient(150deg, #C9D8E4 0%, #7E97B0 55%, #44586C 100%)",
+];
 
-/**
- * Instagram's own official embed. Once embed.js runs, Instagram fetches the
- * actual post and replaces this block with a real iframe containing the
- * genuine thumbnail/video, caption, and like count — pulled live from
- * Instagram, not anything written by hand.
- */
-function InstagramReelEmbed({ url }: { url: string }) {
-  const [loaded, setLoaded] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    let cancelled = false;
-
-    if (window.instgrm) {
-      window.instgrm.Embeds.process();
-    }
-
-    const observer = new MutationObserver(() => {
-      if (cancelled) return;
-      if (containerRef.current?.querySelector("iframe")) {
-        setLoaded(true);
-        observer.disconnect();
-      }
-    });
-
-    if (containerRef.current) {
-      observer.observe(containerRef.current, { childList: true, subtree: true });
-    }
-
-    return () => {
-      cancelled = true;
-      observer.disconnect();
-    };
-  }, [url]);
-
+function ReelCard({ reel, index }: { reel: Reel; index: number }) {
+  const shoppableCount = reelProducts(reel).length + (reelOutfit(reel) ? 1 : 0);
   return (
-    <div ref={containerRef} className="relative min-h-[420px] flex items-center justify-center">
-      {!loaded && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-off-white text-muted-gray rounded-2xl">
-          <Loader2 size={18} className="animate-spin" />
-          <span className="text-[11px]">Loading reel…</span>
-        </div>
-      )}
-      <blockquote
-        className="instagram-media"
-        data-instgrm-permalink={url}
-        data-instgrm-version="14"
-        style={{
-          background: "#FFF",
-          border: 0,
-          margin: "0 auto",
-          width: "100%",
-          minWidth: "270px",
-          maxWidth: "100%",
-        }}
-      >
-        <a href={url} target="_blank" rel="noopener noreferrer">
-          View this reel on Instagram
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ duration: 0.5, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
+    >
+      <div className="mb-3 flex items-center justify-between">
+        <span className="bg-warm-beige px-2.5 py-1 rounded-full text-[10px] tracking-[0.12em] uppercase text-warm-gray font-semibold">
+          {reel.title}
+        </span>
+        <a
+          href={reel.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-muted-gray hover:text-charcoal transition-colors"
+          aria-label={`Open ${reel.title} reel on Instagram`}
+        >
+          <ExternalLink size={13} />
         </a>
-      </blockquote>
-    </div>
+      </div>
+
+      {/* Cover — always renders, tap to watch on Instagram */}
+      <a
+        href={reel.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group relative block aspect-[3/4] overflow-hidden rounded-3xl shadow-medium transition-transform duration-300 hover:-translate-y-1"
+        style={{ background: REEL_COVERS[index % REEL_COVERS.length] }}
+        aria-label={`Watch ${reel.title} on Instagram`}
+      >
+        {/* Decorative rings */}
+        <div className="absolute -right-10 -top-10 h-44 w-44 rounded-full bg-white/10" />
+        <div className="absolute -bottom-14 -left-14 h-56 w-56 rounded-full bg-black/10" />
+
+        {/* Top row */}
+        <div className="absolute left-4 right-4 top-4 flex items-center justify-between">
+          <span className="flex items-center gap-1.5 rounded-full bg-black/30 px-3 py-1 text-[10px] font-medium uppercase tracking-wider text-white backdrop-blur-sm">
+            <Instagram size={11} /> Reel
+          </span>
+          {shoppableCount > 0 && (
+            <span className="rounded-full bg-cream/90 px-3 py-1 text-[10px] font-semibold text-charcoal">
+              {shoppableCount} buyable {shoppableCount === 1 ? "item" : "items"}
+            </span>
+          )}
+        </div>
+
+        {/* Play button */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <span className="flex h-16 w-16 items-center justify-center rounded-full bg-cream/95 text-charcoal shadow-large transition-transform duration-300 group-hover:scale-110">
+            <Play size={22} fill="currentColor" className="ml-1" />
+          </span>
+        </div>
+
+        {/* Bottom caption */}
+        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/55 to-transparent p-4 pt-10">
+          <p className="text-sm font-medium text-white">{reel.title}</p>
+          <p className="mt-0.5 line-clamp-2 text-[11px] leading-relaxed text-white/80">
+            {reel.caption}
+          </p>
+        </div>
+      </a>
+
+      {/* Actions */}
+      <div className="mt-3 flex gap-2">
+        <a
+          href={reel.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn-ghost flex-1 justify-center px-2 py-2 text-xs"
+        >
+          <Play size={11} /> Watch
+        </a>
+        {shoppableCount > 0 && (
+          <a
+            href={`/shop#reel-${reel.id}`}
+            className="btn-primary flex-1 justify-center px-2 py-2 text-xs"
+          >
+            <ShoppingBag size={12} /> Shop look
+          </a>
+        )}
+      </div>
+    </motion.div>
   );
 }
 
 export function InstagramSection() {
   return (
     <section className="section-padding bg-off-white relative overflow-hidden">
-      {/* Loads Instagram's official embed script once; it scans the page
-          for .instagram-media blockquotes and renders the real previews. */}
-      <Script
-        src="https://www.instagram.com/embed.js"
-        strategy="lazyOnload"
-        onLoad={() => window.instgrm?.Embeds.process()}
-        onReady={() => window.instgrm?.Embeds.process()}
-      />
 
       {/* Ambient background blur, same treatment as DayInTheLife for consistency */}
       <div className="absolute top-0 right-1/4 w-[420px] h-[420px] rounded-full bg-soft-pink/20 blur-[130px] pointer-events-none" />
@@ -196,47 +213,11 @@ export function InstagramSection() {
           </div>
         </motion.div>
 
-        {/* Real Instagram embeds, evenly laid out, equal-width columns */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-start mb-14">
-          {reels.map((reel, i) => {
-            const shoppableCount = reelProducts(reel).length + (reelOutfit(reel) ? 1 : 0);
-            return (
-            <motion.div
-              key={reel.url}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <div className="mb-3 flex items-center justify-between">
-                <span className="text-[10px] tracking-[0.12em] uppercase text-warm-gray font-semibold bg-warm-beige px-2.5 py-1 rounded-full">
-                  {reel.title}
-                </span>
-                <a
-                  href={reel.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted-gray hover:text-charcoal transition-colors"
-                  aria-label={`Open ${reel.title} reel on Instagram`}
-                >
-                  <ExternalLink size={13} />
-                </a>
-              </div>
-              <div className="rounded-2xl overflow-hidden border border-light-gray shadow-medium bg-white transition-transform duration-300 hover:-translate-y-1">
-                <InstagramReelEmbed url={reel.url} />
-              </div>
-              {shoppableCount > 0 && (
-                <a
-                  href={`/shop#reel-${reel.id}`}
-                  className="btn-primary w-full justify-center mt-3 py-2.5 text-xs"
-                >
-                  <ShoppingBag size={12} />
-                  <span>Shop this reel ({shoppableCount} {shoppableCount === 1 ? "item" : "items"})</span>
-                </a>
-              )}
-            </motion.div>
-            );
-          })}
+        {/* Reel cards — always visible, tap to watch on Instagram */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 items-start mb-14">
+          {reels.map((reel, i) => (
+            <ReelCard key={reel.url} reel={reel} index={i} />
+          ))}
         </div>
 
         {/* Real account insights */}

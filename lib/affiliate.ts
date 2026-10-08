@@ -368,7 +368,7 @@ export const OUTFITS: Outfit[] = [
   {
     id: "gym-fit",
     title: "Gym fit",
-    image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80",
+    image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80",
     total: "₹5,247",
     items: [
       { label: "Top", name: "Seamless sports bra", brand: "Nike", price: "₹1,995", affiliateUrl: "https://www.amazon.in/s?k=Nike+sports+bra+women", searchKeyword: "Nike sports bra women" },
