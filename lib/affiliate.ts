@@ -149,6 +149,54 @@ export const PRODUCTS: Product[] = [
     searchKeyword: "MYFITNESS chocolate crunchy protein peanut butter",
   },
   {
+    id: "watermelon-sunscreen-moisturizer",
+    name: "Watermelon Sunscreen + Barrier Repair Moisturizer",
+    category: "Skincare",
+    desc: "Two-in-one sunscreen and barrier moisturizer, watermelon variant — my daily morning step.",
+    price: "Check on Amazon",
+    rating: 5,
+    image: "https://images.unsplash.com/photo-1521223890158-f9f7c3d5d504?w=600&q=80",
+    tag: "My product pick",
+    affiliateUrl: "https://www.amazon.in/dp/B0HGM8FCLH",
+    searchKeyword: "watermelon sunscreen barrier moisturizer",
+  },
+  {
+    id: "luxzii-nonwired-innerwear",
+    name: "LUXZII Non-Wired Comfortable Innerwear",
+    category: "Fashion",
+    desc: "Non-wired everyday comfort innerwear with adjustable straps — comfort first.",
+    price: "Check on Amazon",
+    rating: 5,
+    image: "https://images.unsplash.com/photo-1489987707025-afc232f7bdaf?w=600&q=80",
+    tag: "My product pick",
+    affiliateUrl: "https://www.amazon.in/dp/B0GZ6P8GR5",
+    searchKeyword: "LUXZII non wired innerwear",
+  },
+  {
+    id: "secret-lives-padded-lingerie",
+    name: "Secret Lives Padded Lingerie",
+    category: "Fashion",
+    desc: "Padded everyday lingerie — soft, supportive, made for daily wear.",
+    price: "Check on Amazon",
+    rating: 5,
+    image: "https://images.unsplash.com/photo-1445205170230-053b83016050?w=600&q=80",
+    tag: "My product pick",
+    affiliateUrl: "https://www.amazon.in/dp/B0DRD7FD4R",
+    searchKeyword: "secret lives padded lingerie women",
+  },
+  {
+    id: "secret-lives-padded-wired",
+    name: "Secret Lives Padded Wired Bra",
+    category: "Fashion",
+    desc: "Padded wired bra for shape plus support — my pick when the outfit needs it.",
+    price: "Check on Amazon",
+    rating: 5,
+    image: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=600&q=80",
+    tag: "My product pick",
+    affiliateUrl: "https://www.amazon.in/dp/B0FLQ6KTT5",
+    searchKeyword: "secret lives padded wired bra",
+  },
+  {
     id: "sony-xm5",
     name: "Sony WH-1000XM5",
     category: "Desk setup",
@@ -246,7 +294,7 @@ export const PRODUCTS: Product[] = [
   },
 ];
 
-export const PRODUCT_CATEGORIES = ["All", "Desk setup", "Skincare", "Gym", "Kitchen", "Room"];
+export const PRODUCT_CATEGORIES = ["All", "Desk setup", "Skincare", "Gym", "Kitchen", "Fashion", "Room"];
 
 // ── OUTFITS — each item gets its own affiliate link ──
 export interface OutfitItem {
