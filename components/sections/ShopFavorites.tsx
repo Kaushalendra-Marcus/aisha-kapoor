@@ -20,7 +20,7 @@ export function ShopFavorites() {
     : products.filter((p) => p.category === activeCategory);
 
   return (
-    <section className="section-padding bg-cream">
+    <section id="store" className="section-padding bg-off-white border-y border-light-gray/60">
       <div className="container-site">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -55,19 +55,34 @@ export function Navbar() {
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-7">
-            {navLinks.slice(0, 7).map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`nav-link text-[13px] font-medium tracking-wide transition-colors duration-200 ${
-                  pathname === link.href
-                    ? "text-charcoal"
-                    : "text-warm-gray hover:text-charcoal"
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
+            {navLinks.slice(0, 7).map((link) => {
+              const isShop = link.href === "/shop";
+              const isActive = pathname === link.href;
+              if (isShop) {
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="text-[13px] font-semibold tracking-wide px-4 py-1.5 rounded-full bg-charcoal text-cream hover:bg-accent-rose transition-colors duration-200"
+                  >
+                    🛍️ {link.label}
+                  </Link>
+                );
+              }
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`nav-link text-[13px] font-medium tracking-wide transition-colors duration-200 ${
+                    isActive
+                      ? "text-charcoal"
+                      : "text-warm-gray hover:text-charcoal"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
           </nav>
 
           {/* CTA */}
@@ -112,11 +127,19 @@ export function Navbar() {
                   <Link
                     href={link.href}
                     onClick={() => setMenuOpen(false)}
-                    className={`block py-4 border-b border-light-gray font-display text-2xl font-light ${
+                    className={`flex items-center justify-between py-4 border-b border-light-gray font-display text-2xl font-light ${
                       pathname === link.href ? "text-charcoal" : "text-warm-gray"
                     }`}
                   >
-                    {link.label}
+                    <span>
+                      {link.href === "/shop" ? "🛍️ " : ""}
+                      {link.label}
+                    </span>
+                    {link.href === "/shop" && (
+                      <span className="text-[10px] font-body font-semibold tracking-widest uppercase bg-accent-rose text-cream px-3 py-1 rounded-full">
+                        Buy here
+                      </span>
+                    )}
                   </Link>
                 </motion.div>
               ))}

@@ -12,20 +12,22 @@ import { NewsletterSection } from "@/components/sections/NewsletterSection";
 import { AboutTeaser } from "@/components/sections/AboutTeaser";
 import { MarqueeSection } from "@/components/sections/MarqueeSection";
 
+// Store-first order: visitors (esp. from Instagram) see buyable
+// products + reels FIRST, lifestyle content after.
 export default function HomePage() {
   return (
     <>
       <HeroSection />
+      <ShopFavorites />
+      <InstagramSection />
+      <OutfitOfWeek />
       <TodaySection />
       <DayInTheLife />
       <MarqueeSection />
       <AboutTeaser />
       <LatestJournal />
-      <InstagramSection />
-      <OutfitOfWeek />
       <RecipesPreview />
       <GymSection />
-      <ShopFavorites />
       <BlogPreview />
       <NewsletterSection />
     </>

@@ -157,7 +157,11 @@ export function HeroSection() {
             className="text-warm-gray text-base md:text-lg font-body font-light leading-relaxed max-w-md mb-10"
           >
             Morning routines, office days, gym sessions, cooking experiments —
-            real moments, honestly shared. No filter on the life part.
+            real moments, honestly shared. And everything I use,{" "}
+            <Link href="/shop" className="font-medium text-charcoal underline underline-offset-4 hover:text-accent-rose">
+              you can buy right here
+            </Link>
+            .
           </motion.p>
 
           {/* CTAs */}
@@ -167,11 +171,11 @@ export function HeroSection() {
             transition={{ delay: 0.65, duration: 0.6 }}
             className="flex flex-wrap items-center gap-4"
           >
-            <Link href="/journal" className="btn-primary">
-              Read my journal
+            <Link href="/shop" className="btn-primary">
+              🛍️ Shop my store
             </Link>
-            <Link href="/about" className="btn-ghost">
-              Who is Aisha?
+            <Link href="/links" className="btn-ghost">
+              🎬 Shop my reels
             </Link>
           </motion.div>
 
@@ -204,7 +208,7 @@ export function HeroSection() {
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
       >
         <span className="text-[10px] tracking-[0.2em] uppercase text-muted-gray">
-          Scroll
+          Shop below
         </span>
         <motion.div
           animate={{ y: [0, 6, 0] }}
