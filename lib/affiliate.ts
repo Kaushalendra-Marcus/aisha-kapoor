@@ -7,7 +7,7 @@
 // Until then, buttons fall back to Amazon.in search so nothing is dead.
 // ─────────────────────────────────────────────────────────────
 
-export const AMAZON_TAG = "YOUR_AMAZON_TAG"; // ← e.g. "aishadiaries-21"
+export const AMAZON_TAG = "newshaqseller-21"; // ← user's own Associates tracking ID (extracted from their SiteStripe link)
 
 export const INSTAGRAM_URL = "https://www.instagram.com/aishadiaries.23/";
 export const INSTAGRAM_HANDLE = "@aishadiaries.23";
