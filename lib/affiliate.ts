@@ -49,6 +49,20 @@ export function productUrl(p: Pick<Product, "affiliateUrl" | "searchKeyword">): 
 // ── SHOP PRODUCTS — replace affiliateUrl with your real links ──
 export const PRODUCTS: Product[] = [
   {
+    id: "noise-wireless-headphones",
+    name: "Noise Wireless Bluetooth Headphones",
+    category: "Gym",
+    desc: "My pick for music on the go — long playtime, low latency, great for gym and travel.",
+    price: "Check on Amazon",
+    rating: 5,
+    image: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=600&q=80",
+    tag: "My product pick",
+    // Direct dp link so YOUR tag (newshaqseller-21) is applied via withAmazonTag.
+    // (The short link you shared carried a different tag, so not using it as-is.)
+    affiliateUrl: "https://www.amazon.in/dp/B0B1PXM75C",
+    searchKeyword: "Noise wireless bluetooth headphones",
+  },
+  {
     id: "sony-xm5",
     name: "Sony WH-1000XM5",
     category: "Desk setup",
