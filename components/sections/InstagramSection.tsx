@@ -145,6 +145,13 @@ export function InstagramSection() {
           <h2 className="font-condensed text-poster-md text-charcoal leading-[0.95]">
             A few reels worth a watch
           </h2>
+          <p className="mt-3 text-sm text-warm-gray max-w-lg">
+            Came from Instagram?{" "}
+            <a href="/links" className="font-medium text-charcoal underline underline-offset-4 hover:text-accent-rose">
+              Shop everything I post here
+            </a>{" "}
+            — one tap, all links.
+          </p>
         </motion.div>
 
         {/* Profile card */}
@@ -171,16 +178,24 @@ export function InstagramSection() {
               </div>
             </div>
           </div>
-          <a
-            href={PROFILE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary text-xs py-2.5 px-5 self-start sm:self-auto flex-shrink-0"
-          >
-            <Instagram size={13} />
-            <span>View profile</span>
-            <ExternalLink size={11} />
-          </a>
+          <div className="flex flex-col sm:flex-row gap-3 self-start sm:self-auto flex-shrink-0">
+            <a
+              href="/links"
+              className="btn-primary text-xs py-2.5 px-5"
+            >
+              <span>Shop my Instagram</span>
+            </a>
+            <a
+              href={PROFILE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-ghost text-xs py-2.5 px-5"
+            >
+              <Instagram size={13} />
+              <span>View profile</span>
+              <ExternalLink size={11} />
+            </a>
+          </div>
         </motion.div>
 
         {/* Real Instagram embeds, evenly laid out, equal-width columns */}

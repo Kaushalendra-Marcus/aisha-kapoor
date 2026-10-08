@@ -11,6 +11,7 @@ const footerLinks = {
   Discover: [
     { label: "Blog", href: "/blog" },
     { label: "Shop", href: "/shop" },
+    { label: "Shop My Instagram", href: "/links" },
     { label: "Downloads", href: "/downloads" },
     { label: "About", href: "/about" },
   ],
@@ -92,6 +93,9 @@ export function Footer() {
         <div className="border-t border-cream/10 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-xs text-cream/30">
             © {new Date().getFullYear()} Aisha Kapoor. All rights reserved.
+          </p>
+          <p className="text-[11px] text-cream/25 max-w-xs">
+            As an Amazon Associate I earn from qualifying purchases.
           </p>
           <div className="flex items-center gap-6">
             <Link href="/privacy" className="text-xs text-cream/30 hover:text-cream/60 transition-colors">

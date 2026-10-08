@@ -10,6 +10,7 @@ const staticRoutes = [
   "/gym",
   "/recipes",
   "/shop",
+  "/links",
   "/blog",
   "/downloads",
   "/collabs",

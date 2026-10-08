@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ShopInteractive } from "@/components/sections/ShopInteractive";
+import { AffiliateDisclosure } from "@/components/ui/AffiliateDisclosure";
 
 export const metadata: Metadata = {
   title: "Shop My Favorites",
@@ -18,11 +19,12 @@ export default function ShopPage() {
           <h1 className="font-display text-display-lg text-charcoal leading-[1.0] mb-6">
             Things I genuinely love
           </h1>
-          <p className="text-warm-gray text-base leading-relaxed">
-            Only things I actually own and use. Every link is an affiliate 
-            link — you pay nothing extra, I earn a small commission. Honest 
+          <p className="text-warm-gray text-base leading-relaxed mb-6">
+            Only things I actually own and use. Every link is an affiliate
+            link — you pay nothing extra, I earn a small commission. Honest
             recommendations only, always.
           </p>
+          <AffiliateDisclosure variant="long" />
         </div>
 
         <ShopInteractive />

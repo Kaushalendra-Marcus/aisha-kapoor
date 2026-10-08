@@ -5,65 +5,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ExternalLink, Star } from "lucide-react";
+import { PRODUCTS, PRODUCT_CATEGORIES, productUrl } from "@/lib/affiliate";
+import { AffiliateDisclosure } from "@/components/ui/AffiliateDisclosure";
 
-const categories = ["All", "Desk setup", "Skincare", "Gym", "Kitchen"];
+const categories = PRODUCT_CATEGORIES;
 
-const products = [
-  {
-    name: "Sony WH-1000XM5",
-    category: "Desk setup",
-    desc: "I bought this 8 months ago and I use it 6 hours every day. Worth every rupee.",
-    price: "₹24,990",
-    rating: 5,
-    image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300&q=80",
-    tag: "Daily use",
-  },
-  {
-    name: "Dot & Key Barrier Repair Moisturizer",
-    category: "Skincare",
-    desc: "Indian skincare that actually works. Gentle, non-sticky, affordable.",
-    price: "₹499",
-    rating: 5,
-    image: "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=300&q=80",
-    tag: "Repurchase",
-  },
-  {
-    name: "Ikea Bekant Desk",
-    category: "Desk setup",
-    desc: "Clean, minimal, huge. My WFH setup would not exist without this.",
-    price: "₹14,990",
-    rating: 4,
-    image: "https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=300&q=80",
-    tag: "Room setup",
-  },
-  {
-    name: "Mamaearth Ubtan Face Wash",
-    category: "Skincare",
-    desc: "Morning routine staple. Smells like haldi and makes skin glow.",
-    price: "₹249",
-    rating: 5,
-    image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=300&q=80",
-    tag: "Morning use",
-  },
-  {
-    name: "JBL Tune 520BT headphones",
-    category: "Gym",
-    desc: "On every single gym session. Battery lasts the whole week.",
-    price: "₹2,499",
-    rating: 5,
-    image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=300&q=80",
-    tag: "Gym essential",
-  },
-  {
-    name: "Borosil glass meal prep containers",
-    category: "Kitchen",
-    desc: "Microwave safe, doesn't stain, makes meal prep so much easier.",
-    price: "₹1,199",
-    rating: 5,
-    image: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=300&q=80",
-    tag: "Kitchen",
-  },
-];
+const products = PRODUCTS.slice(0, 6);
 
 export function ShopFavorites() {
   const [activeCategory, setActiveCategory] = useState<string>("All");
@@ -71,6 +18,8 @@ export function ShopFavorites() {
   const filteredProducts = activeCategory === "All"
     ? products
     : products.filter((p) => p.category === activeCategory);
+
+  // Stable key: product id, not name
 
   return (
     <section className="section-padding bg-cream">
@@ -96,10 +45,13 @@ export function ShopFavorites() {
           </Link>
         </motion.div>
 
-        <p className="text-warm-gray text-sm mb-10 max-w-lg">
-          Only things I actually use. Every link is an affiliate link — you pay 
+        <p className="text-warm-gray text-sm mb-4 max-w-lg">
+          Only things I actually use. Every link is an affiliate link — you pay
           nothing extra, I earn a small commission. Honest recs only.
         </p>
+        <div className="mb-10 max-w-lg">
+          <AffiliateDisclosure />
+        </div>
 
         {/* Category filters */}
         <motion.div
@@ -137,7 +89,7 @@ export function ShopFavorites() {
             {filteredProducts.map((product) => (
               <motion.div
                 layout
-                key={product.name}
+                key={product.id}
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
@@ -180,10 +132,12 @@ export function ShopFavorites() {
                       {product.price}
                     </span>
                     <a
-                      href="#"
+                      href={productUrl(product)}
+                      target="_blank"
+                      rel="nofollow sponsored noopener noreferrer"
                       className="flex items-center gap-1.5 text-[11px] font-medium text-warm-gray hover:text-charcoal transition-colors group/link"
                     >
-                      <span>Shop</span>
+                      <span>Shop on Amazon</span>
                       <ExternalLink size={10} className="group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform duration-200" />
                     </a>
                   </div>

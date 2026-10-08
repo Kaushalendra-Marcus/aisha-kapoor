@@ -14,6 +14,7 @@ const navLinks = [
   { href: "/gym", label: "Gym" },
   { href: "/recipes", label: "Recipes" },
   { href: "/shop", label: "Shop" },
+  { href: "/links", label: "Shop My Insta" },
   { href: "/blog", label: "Blog" },
   { href: "/collabs", label: "Collabs" },
 ];

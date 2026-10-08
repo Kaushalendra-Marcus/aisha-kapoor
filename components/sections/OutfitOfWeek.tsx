@@ -5,24 +5,28 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ShoppingBag, Play, ExternalLink } from "lucide-react";
+import { OUTFITS, withAmazonTag } from "@/lib/affiliate";
 
 const WEDDING_REEL_URL = "https://www.instagram.com/reel/DaD1WAcTROK/";
 
-interface OutfitItem {
-  label: string;
-  name: string;
-  brand: string;
-  price: string;
+interface Hotspot {
   top: string;
   left: string;
 }
 
-const outfitItems: OutfitItem[] = [
-  { label: "Top", name: "Beige linen oversized shirt", brand: "H&M", price: "₹1,299", top: "25%", left: "55%" },
-  { label: "Bottom", name: "White straight trousers", brand: "Zara", price: "₹2,490", top: "58%", left: "50%" },
-  { label: "Shoes", name: "Adidas Stan Smith", brand: "Adidas", price: "₹8,999", top: "85%", left: "45%" },
-  { label: "Bag", name: "Mini canvas tote", brand: "Uniqlo", price: "₹1,799", top: "48%", left: "28%" },
+// Hotspot positions map to OUTFITS[0].items order
+const hotspots: Hotspot[] = [
+  { top: "25%", left: "55%" },
+  { top: "58%", left: "50%" },
+  { top: "85%", left: "45%" },
+  { top: "48%", left: "28%" },
 ];
+
+const outfitItems = OUTFITS[0].items.map((item, i) => ({
+  ...item,
+  top: hotspots[i]?.top ?? "50%",
+  left: hotspots[i]?.left ?? "50%",
+}));
 
 export function OutfitOfWeek() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -80,7 +84,14 @@ export function OutfitOfWeek() {
                     </div>
                     <div className="flex items-center gap-3">
                       <span className="text-sm font-display text-charcoal">{item.price}</span>
-                      <ShoppingBag size={13} className={`transition-colors duration-200 ${isHovered ? "text-accent-rose" : "text-muted-gray hover:text-charcoal"}`} />
+                      <a
+                        href={withAmazonTag(item.affiliateUrl)}
+                        target="_blank"
+                        rel="nofollow sponsored noopener noreferrer"
+                        aria-label={`Shop ${item.name} on Amazon`}
+                      >
+                        <ShoppingBag size={13} className={`transition-colors duration-200 ${isHovered ? "text-accent-rose" : "text-muted-gray hover:text-charcoal"}`} />
+                      </a>
                     </div>
                   </motion.div>
                 );
